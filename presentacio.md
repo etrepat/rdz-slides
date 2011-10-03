@@ -6,12 +6,11 @@ i es centrarà en ensenyar a desenvolupar aplicacions web mitjançant rails.
 ## Duració i localització
 
 El curs tindrà una durada de 9 dies en sessions d'una hora i mitja de 19:30 a 21:00 de dilluns a divendres. Començant el dilluns
-7 de novembre fins al dijous 17 del mateix mes.
+7 de novembre fins al dijous dia 17 del mateix mes.
 
 La localització del curs serà a les oficines de KeyNet a Torrefarrera: 
 
 Avda. de Lleida, 120
-
 25123 Torrefarera, Lleida
 
 ## Cost
@@ -67,7 +66,7 @@ Aquest curs és per a tu si:
 	- Models
 	- "Seeds"
 	- Validacions
-	- Associacions
+	- Relacions / Associacions
 	- Consultes SQL
 
 4. Paradigma MVC: Vistes
