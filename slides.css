@@ -1,0 +1,45 @@
+@import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+
+.slide {
+  background-color: #222;
+  background-image: url(assets/images/dark_mosaic.png);
+}
+
+.content {
+  font-family: 'Yanone Kaffeesatz', helvetica, arial;
+  color: #fefefe;
+}
+
+.content h1 {
+  font-size: 8em;
+}
+
+.subsection h1 {
+  background-color: #222;
+  font-size: 6em;
+  opacity: .7;
+}
+
+.content h2 {
+  font-size: 5em;
+}
+
+.content h3 {
+  font-size: 4em;
+}
+
+.content a {
+  color: #fff;
+}
+
+pre.sh_sourceCode {
+  border: 1px solid #999;
+  background-color: #ccc;
+}
+
+pre.sh_shell {
+  background-color: #000;
+  border: 1px solid #999;
+  color: #fefefe;
+  font-weight: bold;
+}
