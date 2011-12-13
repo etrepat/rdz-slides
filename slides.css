@@ -35,7 +35,13 @@
 pre.sh_sourceCode {
   border: 1px solid #999;
   background-color: #ccc;
+  font-size: 200%;
 }
+
+pre.sh_sourceCode.small { font-size: 125%; }
+
+pre.sh_sourceCode.smallest { font-size: 100%; }
+
 
 pre.sh_shell {
   background-color: #000;
