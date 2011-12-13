@@ -2,7 +2,7 @@
   "name": "Rails desde Zero",
   "description": "Curs d'introducció a Ruby on Rails",
   "sections": [
-    {"section": "introduccio"},
-    {"section": "ruby_nocions"}
+    {"section": "01_introduccio"},
+    {"section": "02_tour_de_ruby"}
   ]
 }
