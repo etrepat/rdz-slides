@@ -2,6 +2,6 @@
   "name": "Rails desde Zero",
   "description": "Curs d'introducció a Ruby on Rails",
   "sections": [{
-    "section": "install"
+    "section": "introduccio"
   }]
 }

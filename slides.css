@@ -41,5 +41,9 @@ pre.sh_shell {
   background-color: #000;
   border: 1px solid #999;
   color: #fefefe;
-  font-weight: bold;
+  font-size: 200%;
 }
+
+pre.sh_shell.small { font-size: 125%; }
+
+pre.sh_shell.smallest { font-size: 100%; }
