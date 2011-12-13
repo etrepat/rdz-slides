@@ -1,7 +1,8 @@
 {
   "name": "Rails desde Zero",
   "description": "Curs d'introducció a Ruby on Rails",
-  "sections": [{
-    "section": "introduccio"
-  }]
+  "sections": [
+    {"section": "introduccio"},
+    {"section": "ruby_nocions"}
+  ]
 }
