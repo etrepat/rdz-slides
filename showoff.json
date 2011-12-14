@@ -3,6 +3,7 @@
   "description": "Curs d'introducció a Ruby on Rails",
   "sections": [
     {"section": "01_introduccio"},
-    {"section": "02_tour_de_ruby"}
+    {"section": "02_tour_de_ruby"},
+    {"section": "03_models"}
   ]
 }
