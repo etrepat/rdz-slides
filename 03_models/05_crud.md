@@ -2,6 +2,10 @@
 # Models
 ## CRUD
 
+!SLIDE subsection
+# Models
+## CRUD
+
 ### <font color="green">**C**</font>reate
 ### <font color="blue">**R**</font>ead
 ### <font color="yellow">**U**</font>pdate
@@ -12,14 +16,13 @@
 
 Mètodes per a instanciar i/o crear models
     @@@ ruby
-    new(attributes)       # instancia un nou model
-    create(attributes)    # instancia i crea
-    create!(attributes)   # excepció si error
+    new(atribts)       # instancia un nou model
+    create(atributs)   # instancia i crea
+    create!(atribts)   # " + excepció si error
 
 Exemple
     @@@ ruby
-    p = Persona.new
-    p.nom = "Estanis"
+    p = Persona.new(:nom => "Estanis")
     p.save
 
 !SLIDE subsection

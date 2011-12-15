@@ -5,7 +5,7 @@
 !SLIDE subsection
 # Associacions
 
-En Rails, una associació és una *connexió ó relació* ente dos models `ActiveRecord.
+En Rails, una associació és una *connexió ó relació* ente dos models.
 
 Rails soporta sis tipus d'associacions:
 
