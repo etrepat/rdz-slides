@@ -83,7 +83,7 @@ el que ens crearà una migració com la següent:
 
 Individualment
     @@@ shell small
-    $ rails generate migration rails generate migration AddPartNumberToProducts
+    $ rails generate migration AddPartNumberToProducts
 
 que ens crearà:
     @@@ ruby
