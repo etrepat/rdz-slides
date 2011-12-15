@@ -5,7 +5,7 @@
 !SLIDE subsection
 # Associacions
 
-En Rails, una associacó és una *connexió ó relació* ente dos models `ActiveRecord.
+En Rails, una associació és una *connexió ó relació* ente dos models `ActiveRecord.
 
 Rails soporta sis tipus d'associacions:
 
@@ -283,3 +283,21 @@ Especificar-la a la migració (alternativa)
 # Associacions polimòrfiques
 
 ![polymorphic](/file/assets/images/polymorphic.png)
+
+!SLIDE subsection
+# Associacions auto-referencials
+
+En el moment de dissenyar un model ens podem trobar sovint amb la necessitat
+que aquest tingui una relació amb **si mateix**.
+
+Per exemple:
+
+    @@@ ruby
+    class Empleat < ActiveRecord::Base
+      has_many :subordinats, :class_name => "Empleat"
+      belongs_to :coordinador, :class_name => "Empleat",
+        :foreign_key => "coordinador_id"
+    end
+
+    # Cada empleat pot tenir de 0-N subordinats i pertany
+    # a 0 o 1 coordinador
