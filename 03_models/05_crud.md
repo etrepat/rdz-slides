@@ -16,7 +16,7 @@
 
 Mètodes per a instanciar i/o crear models
     @@@ ruby
-    new(atribts)       # instancia un nou model
+    new(atributs)       # instancia un nou model
     create(atributs)   # instancia i crea
     create!(atribts)   # " + excepció si error
 
@@ -33,11 +33,15 @@ Mètodes per a llegir objectes (consultes a continuació)
     find(id)      # també amb un array de ids
     exists?       # existeix?
     new_record?   # nou?
+    first         # el primer
+    last          # l'últim
 
 Exemple
     @@@ ruby
     Categories.find(1)
     Categories.find([2,3,4,5])
+    Categories.last
+
 
 !SLIDE subsection
 # <font color="yellow">U</font>pdate

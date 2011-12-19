@@ -15,7 +15,7 @@ que utilizar sentències SQL per a extreure informació de la BD.
 # Consultes
 ## Mètodes
 
-Els mètodes de consultas en rails són els següents:
+Els mètodes de consulta en rails són els següents:
 
 `
 where,
@@ -31,6 +31,10 @@ joins
 Tots aquests mètodes retornen una instància d'`ActiveRecord::Relation`.
 
 A més, tots aquests mètodes són encadenables.
+
+!SLIDE subsection
+# Consultes
+## Mètodes
 
 !SLIDE subsection
 # `where`
@@ -252,11 +256,13 @@ Produeix
 ### Join anidat (múltiples nivells)
 
     @@@ ruby
-    Categoria.jons(:articles => [{:comentaris => :usuari}, :tags])
+    Categoria.joins(
+        :articles => [{:comentaris => :usuari}, :tags]
+    )
 
 Produeix
 
-    @@@ sql
+    @@@ sql small
     SELECT categories.* FROM categories
     INNER JOIN articles
       ON articles.categoria_id = categories.id
@@ -347,3 +353,15 @@ En SQL
     SELECT dades_enviament.*
     FROM dades_enviament
     WHERE (dades_enviament.client_id IN (1,2,3,4,5,6,7,8,9,10))
+
+!SLIDE subsection
+# Consultes
+## SQL
+
+Si volem utilitzar al nostra pròpia consulta SQL podem utilitzar el mètode
+`find_by_sql`.
+
+    @@@ ruby
+    Client.find_by_sql("SELECT * FROM clients
+        INNER JOIN comandes ON clients.id = comandes.client_id
+        ORDER clients.created_at desc")
