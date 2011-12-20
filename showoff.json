@@ -4,6 +4,8 @@
   "sections": [
     {"section": "01_introduccio"},
     {"section": "02_tour_de_ruby"},
-    {"section": "03_models"}
+    {"section": "03_models"},
+    {"section": "04_controladors_1"},
+    {"section": "05_vistes"}
   ]
 }
