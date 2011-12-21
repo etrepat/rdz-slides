@@ -88,6 +88,29 @@ mitjà d'un símbol.
   * p.ex: `<%= yield :head %>`
 
 !SLIDE subsection
+# `yield`
+
+Un sol bloc `yield`
+
+    @@@ html
+    <html>
+      <head></head>
+      <body>
+        <%= yield %>
+      </body>
+    </html>
+
+Varis
+
+    @@@ html
+    <html>
+      <head><%= yield :head %></head>
+      <body>
+        <%= yield %>
+      </body>
+    </html>
+
+!SLIDE subsection
 # `content_for`
 
 La sentencia `content_for` denota el contingut que correspon a un block `yield`
