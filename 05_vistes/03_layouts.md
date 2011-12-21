@@ -30,6 +30,53 @@
     </body>
     </html>
 
+!SLIDE subsection bullets incremental
+# Layouts
+## Utilitzant layouts
+
+* En Rails podem en tot moment especificar el layout a utilitzar per mitjà
+de la sentència `layout`.
+* Els layouts sempre són compartits en la cadena jeràrquica i sempre
+substitueixin els més generals.
+
+!SLIDE subsection
+# Especificar un layout
+
+Per especificar un layout diferent en un controlador, podem:
+
+    @@@ ruby
+    class ProductsController < ApplicationController
+      layout "inventory"
+      #...
+    end
+
+En aquest càs, les vistes corresponents a `ProductsController` utilitzarant
+el layout `app/views/layouts/inventory.html.erb`.
+
+!SLIDE subsection
+# Especificar un layout
+
+Podem també utilizar un mètode per definir quin layout utilitzar:
+
+    @@@ ruby
+    class ApplicationController < ActionController::Base
+      ...
+      layout :layout_by_resource
+
+      private
+
+      def layout_by_resource
+        if devise_controller?
+          'sign'
+        else
+          'application'
+        end
+      end
+      ...
+    end
+
+En aquest cas, si estem utilitzan `devise`, renderitzarem el layout `sign`.
+
 !SLIDE subsection incremental
 # `yield`
 
