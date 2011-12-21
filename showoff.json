@@ -6,6 +6,7 @@
     {"section": "02_tour_de_ruby"},
     {"section": "03_models"},
     {"section": "04_controladors_1"},
-    {"section": "05_vistes"}
+    {"section": "05_vistes"},
+    {"section": "06_controladors_2"}
   ]
 }

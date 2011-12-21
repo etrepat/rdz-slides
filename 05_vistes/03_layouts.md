@@ -53,7 +53,7 @@ Per especificar un layout diferent en un controlador, podem:
 En aquest càs, les vistes corresponents a `ProductsController` utilitzarant
 el layout `app/views/layouts/inventory.html.erb`.
 
-!SLIDE subsection
+!SLIDE subsection small
 # Especificar un layout
 
 Podem també utilizar un mètode per definir quin layout utilitzar:
@@ -87,7 +87,7 @@ ha de ser introduït.
 mitjà d'un símbol.
   * p.ex: `<%= yield :head %>`
 
-!SLIDE subsection
+!SLIDE subsection small
 # `yield`
 
 Un sol bloc `yield`
