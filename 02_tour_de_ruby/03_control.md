@@ -42,11 +42,13 @@ evaluada
 ## if
 
 També es pot uitlitzar com a modificador de sentència
+
     @@@ ruby
     height = 1.62
     puts "Que alt que ets!" if height >= 1.85
 
 També es pot utilitzar `unless` com a representació de `if !(expr)`
+
     @@@ ruby
     puts "Que alt que ets!" unless height < 1.85
 
@@ -86,6 +88,7 @@ mitjançant el mètode `each`
     end
 
 També com a modificador de sentència
+
     @@@ ruby
     count = 0
     puts count while (count < 3 && count += 1)
@@ -117,6 +120,7 @@ i "trencar-los"
     end
 
 També com a modificador de sentència
+
     @@@ ruby
     count = 0
     puts(count += 1) until count == 3
@@ -125,10 +129,12 @@ També com a modificador de sentència
 # Excepcions
 
 Les excepcions es "llancen" mitjançant la instrucció `raise`
+
     @@@ ruby
     raise StandardError, "WTF!"
 
 i es capturen per mitjà del bloc `begin..rescue..ensure..end`
+
     @@@ ruby
     begin
       # codi que pot fallar

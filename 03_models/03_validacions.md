@@ -6,13 +6,15 @@
 # Validacions
 
 Exemple
+
     @@@ ruby
     class Product < ActiveRecord::Base
       validates :status, :presence => true
     end
 
 Si ho provem en una sessió de la consola
-    @@@ shell
+
+    @@@ sh
     > p = Product.new
     > p.save
     => false

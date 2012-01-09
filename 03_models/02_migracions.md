@@ -62,10 +62,12 @@ exemple, en MySQL un `:string` correspon a `VARCHAR(255)`.
 # 1
 
 Creant-la mitjançant un model o scaffold
-    @@@ shell small
+
+    @@@ sh small
     rails generate model Product name:string description:text
 
 el que ens crearà una migració com la següent:
+
     @@@ ruby
     class CreateProducts < ActiveRecord::Migration
       def change
@@ -82,10 +84,12 @@ el que ens crearà una migració com la següent:
 # 2
 
 Individualment
-    @@@ shell small
+
+    @@@ sh small
     $ rails generate migration AddPartNumberToProducts
 
 que ens crearà:
+
     @@@ ruby
     class AddPartNumberToProducts < ActiveRecord::Migration
       def change

@@ -8,7 +8,7 @@
 
 Quan una aplicació Rails rep una petició com la següent:
 
-    @@@ shell
+    @@@ sh
     GET /patients/17
 
 Demana al "router" que ho enllaci amb una acció d'un controlador. Si la
@@ -44,7 +44,7 @@ accions en un controlador
 
 ### `rake routes`
 
-    @@@ shell small
+    @@@ sh small
     $ rake routes
         articles GET    /articles(.:format)          {:action => "index", :controller => ...}
                  POST   /articles(.:format)          {:action => "create", :controller => ...}

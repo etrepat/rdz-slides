@@ -15,12 +15,14 @@
 # <font color="green">C</font>reate
 
 Mètodes per a instanciar i/o crear models
+
     @@@ ruby
     new(atributs)       # instancia un nou model
     create(atributs)   # instancia i crea
     create!(atribts)   # " + excepció si error
 
 Exemple
+
     @@@ ruby
     p = Persona.new(:nom => "Estanis")
     p.save
@@ -29,6 +31,7 @@ Exemple
 # <font color="blue">R</font>ead
 
 Mètodes per a llegir objectes (consultes a continuació)
+
     @@@ ruby
     find(id)      # també amb un array de ids
     exists?       # existeix?
@@ -37,6 +40,7 @@ Mètodes per a llegir objectes (consultes a continuació)
     last          # l'últim
 
 Exemple
+
     @@@ ruby
     Categories.find(1)
     Categories.find([2,3,4,5])
@@ -47,11 +51,13 @@ Exemple
 # <font color="yellow">U</font>pdate
 
 Actualització *directa* d'atributs d'un o més models
+
     @@@ ruby
     update(ids, actualitzacions)  # poden ser arrays
     update_all(actualitzacions)
 
 Exemple
+
     @@@ ruby
     # actualitza un únic registre
     Empleat.update(15, :salari => 3000,

@@ -89,6 +89,7 @@ parametres com `:layout`.
     <%= render :partial => "form", :locals => { :article => @article } %>
 
 `_form.html.erb`
+
     @@@ html
     <%= form_for(article) do |f| %>
       <p>
@@ -134,11 +135,13 @@ Els parcials són molt útils per a renderitzar col.leccions. Per a fer-ho podem
 utilizar la opció: `:collection`.
 
 `index.html.erb`
+
     @@@ html
     <h1>Productes</h1>
     <%= render :partial => "product", :collection => @products %>
 
 `_product.html.erb`
+
     @@@ html
     <p>Producte: <%= product.name %></p>
 
@@ -149,6 +152,7 @@ utilizar la opció: `:collection`.
 En l'exemple anterior ens enstalviem de fer:
 
 `index.html.erb`
+
     @@@ html
     <h1>Productes</h1>
     <% @products.each do |product| %>

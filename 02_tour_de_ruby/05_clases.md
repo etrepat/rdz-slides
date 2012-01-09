@@ -42,6 +42,7 @@
 ## Variables
 
 Com s'utilitza?
+
     @@@ ruby
     p = Persona.new
     puts p.saluda   # => "Hola Estanis!"
@@ -198,6 +199,7 @@ cal prefixar-los.
 # Mòduls
 
 Exemple
+
     @@@ ruby
     module Edat
       MITJANA_EDAT = 50

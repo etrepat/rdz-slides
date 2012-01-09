@@ -23,8 +23,8 @@
 
 Executar en una finestra del terminal
 
-    @@@ shell
-      $ irb
+    @@@ sh
+    $ irb
 
 S'utilitza, principalment, per a testejar petits trocets de
 codi.
@@ -51,11 +51,11 @@ codi.
 En ruby *tot* és un objecte. Provem el següent en una sessió de Irb
 
     @@@ ruby
-      123.class
-      nil.class
-      true.class
-      "hola mundo!".class
-      :symbol.class
+    123.class
+    nil.class
+    true.class
+    "hola mundo!".class
+    :symbol.class
 
 !SLIDE subsection bullets incremental
 # Certesa
@@ -77,9 +77,9 @@ reservada `nil`
 
 Les constants *sempre* comencen per una lletra majúscula
 
-    @@@ shell
-      Constant = 12   # Aixó és una constant
-      constant = 12   # Aixó no, és una variable
+    @@@ sh
+    Constant = 12   # Aixó és una constant
+    constant = 12   # Aixó no, és una variable
 
 !SLIDE subsection
 # Operadors

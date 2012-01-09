@@ -43,13 +43,13 @@ pre.sh_sourceCode.small { font-size: 125%; }
 pre.sh_sourceCode.smallest { font-size: 100%; }
 
 
-pre.sh_shell {
+pre.sh_sh {
   background-color: #000;
   border: 1px solid #999;
   color: #fefefe;
   font-size: 200%;
 }
 
-pre.sh_shell.small { font-size: 125%; }
+pre.sh_sh.small { font-size: 125%; }
 
-pre.sh_shell.smallest { font-size: 100%; }
+pre.sh_sh.smallest { font-size: 100%; }

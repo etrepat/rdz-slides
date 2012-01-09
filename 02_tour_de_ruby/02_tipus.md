@@ -15,6 +15,7 @@ base `Numeric`
 # Nombres (Numeric)
 
 Exemples
+
     @@@ ruby
     1 + 3 - 7
     => -3
@@ -151,6 +152,7 @@ a un conjunt de mètodes com: `each, select, map, inject, etc.`
 # Array
 
 Semàntica similar
+
     @@@ ruby
     a = ["Ruby", 3.141592]
     a << "Rails"
@@ -165,6 +167,7 @@ Semàntica similar
 # Array
 
 Iterar els elements
+
     @@@ ruby
     c = ["pera", "poma", "pressec"]
     c.each do |fruita|
@@ -177,6 +180,7 @@ Un "block" es pot entendre, de moment, com una funció (o métode) anónima
 # Array
 
 El modul `Enumerable` conté un **munt** de funcions útils
+
     @@@ ruby
     c = [3, 3, 2, 1]
     c.join(' | ')
@@ -201,6 +205,7 @@ s'utilitzen symbols.
 # Hash
 
 Sintaxi
+
     @@@ ruby
     hash = {
       :leia => "Princesa",
@@ -214,6 +219,7 @@ Sintaxi
 # Hash
 
 Treballar amb els elements d'un Hash
+
     @@@ruby
     hash = {}
     hash[:han]
@@ -228,6 +234,7 @@ Treballar amb els elements d'un Hash
 # Hash
 
 Iterar un hash
+
     @@@ ruby
     hash.each do |clau, valor|
       puts "#{clau}: #{valor}"
@@ -254,6 +261,7 @@ els mètodes: `<=>` i `succ`
 # Rangs (Range)
 
 Sintaxi
+
     @@@ ruby
     a = 1..5
     b = 1...5
@@ -263,5 +271,6 @@ Sintaxi
     => [1,2,3,4]
 
 Podem iterar també els rangs
+
     @@@ ruby
     (1..100).each { |n| puts "#{n}" }

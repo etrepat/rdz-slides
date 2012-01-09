@@ -16,6 +16,7 @@ inclús sessions.
 # Cookies
 
 Establir/modificar i llegir una cookie
+
     @@@ ruby
     cookies[:idioma] = I18n.locale
 

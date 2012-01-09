@@ -28,7 +28,7 @@ Definim un "scope" senzill
 
 Llavors podem:
 
-    @@@ shell
+    @@@ sh
     > Article.publicat # => articles publicats
     > categoria = Categoria.first
     > categoria.articles.publicat # => articles publicats
