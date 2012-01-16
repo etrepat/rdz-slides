@@ -1,88 +1,4153 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <meta charset='utf-8'>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Rails desde Zero</title>
 
-  <title>etrepat/rdz-slides @ GitHub</title>
+  <meta name="viewport" content="width=device-width"/>
 
-  <style type="text/css">
-    body {
-      margin-top: 1.0em;
-      background-color: #ad602b;
-      font-family: Helvetica, Arial, FreeSans, san-serif;
-      color: #ffffff;
-    }
-    #container {
-      margin: 0 auto;
-      width: 700px;
-    }
-    h1 { font-size: 3.8em; color: #529fd4; margin-bottom: 3px; }
-    h1 .small { font-size: 0.4em; }
-    h1 a { text-decoration: none }
-    h2 { font-size: 1.5em; color: #529fd4; }
-    h3 { text-align: center; color: #529fd4; }
-    a { color: #529fd4; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-    pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
-  </style>
+  <link rel="stylesheet" href="css/reset.css" type="text/css"/>
+  <link rel="stylesheet" href="css/showoff.css" type="text/css"/>
+
+  <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+  <script type="text/javascript" src="js/jquery.cycle.all.js"></script>
+	<script type="text/javascript" src="js/jquery-print.js"></script>
+  <script type="text/javascript" src="js/jquery.batchImageLoad.js"></script>
+
+  <script type="text/javascript" src="js/jquery.doubletap-0.1.js"></script>
+
+  <script type="text/javascript" src="js/fg.menu.js"></script>
+  <script type="text/javascript" src="js/showoff.js"></script>
+  <script type="text/javascript" src="js/jTypeWriter.js"> </script>
+  <script type="text/javascript" src="js/sh_lang/sh_javascript.min.js"></script>
+  <script type="text/javascript" src="js/sh_lang/sh_html.min.js"></script>
+  <script type="text/javascript" src="js/sh_lang/sh_ruby.min.js"></script>
+  <script type="text/javascript" src="js/sh_lang/sh_sh.min.js"></script>
+  <script type="text/javascript" src="js/sh_lang/sh_sql.min.js"></script>
+  <script type="text/javascript" src="js/sh_main.min.js"></script>
+  <script type="text/javascript" src="js/core.js"></script>
+  <script type="text/javascript" src="js/showoffcore.js"></script>
+  <script type="text/javascript" src="js/coffee-script.js"></script>
+
+  <link type="text/css" href="css/fg.menu.css" media="screen" rel="stylesheet" />
+  <link type="text/css" href="css/theme/ui.all.css" media="screen" rel="stylesheet" />
+  <link type="text/css" href="css/sh_style.css" rel="stylesheet" >
+
+  <link rel="stylesheet" href="file/slides.css" type="text/css"/>
+
+  <script type="text/javascript">
+  $(function(){
+      setupPreso(false, './');
+  });
+  </script>
+
 </head>
 
 <body>
-  <a href="https://github.com/etrepat/rdz-slides"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
 
-  <div id="container">
+<a tabindex="0" href="#search-engines" class="fg-button fg-button-icon-right ui-widget ui-state-default ui-corner-all" id="navmenu"><span class="ui-icon ui-icon-triangle-1-s"></span>slides</a>
+<div id="navigation" class="hidden"></div>
 
-    <div class="download">
-      <a href="https://github.com/etrepat/rdz-slides/zipball/master">
-        <img border="0" width="90" src="https://github.com/images/modules/download/zip.png"></a>
-      <a href="https://github.com/etrepat/rdz-slides/tarball/master">
-        <img border="0" width="90" src="https://github.com/images/modules/download/tar.png"></a>
-    </div>
+<div id="help">
+  <table>
+    <tr><td class="key">z, ?</td><td>toggle help (this)</td></tr>
+    <tr><td class="key">space, &rarr;</td><td>next slide</td></tr>
+    <tr><td class="key">shift-space, &larr;</td><td>previous slide</td></tr>
+    <tr><td class="key">d</td><td>toggle debug mode</td></tr>
+    <tr><td class="key">## &lt;ret&gt;</td><td>go to slide #</td></tr>
+    <tr><td class="key">c, t</td><td>table of contents (vi)</td></tr>
+    <tr><td class="key">f</td><td>toggle footer</td></tr>
+    <tr><td class="key">r</td><td>reload slides</td></tr>
+    <tr><td class="key">n</td><td>toggle notes</td></tr>
+    <tr><td class="key">p</td><td>run preshow</td></tr>
+  </table>
+</div>
 
-    <h1><a href="https://github.com/etrepat/rdz-slides">rdz-slides</a>
-      <span class="small">by <a href="https://github.com/etrepat">etrepat</a></span></h1>
+<div class="buttonNav">
+  <input type="submit" onClick="prevStep();" value="prev"/>
+  <input type="submit" onClick="nextStep();" value="next"/>
+</div>
 
-    <div class="description">
-      Transparències utilitzades en les sessions del curs: Rails desde Zero.
-    </div>
+<div id="preso">loading presentation...</div>
+<div id="footer">
+  <span id="slideInfo"></span>
+  <span id="debugInfo"></span>
+  <span id="notesInfo"></span>
+</div>
 
-    
+<div id="slides" class="offscreen" style="display:none;">
+<div class="slide" data-transition="none"><div class="content" ref="01_introduccio/01_instalacio/1">
+<p><img src="file/assets/images/rails.png" alt="Rails logo"/>
 
-    
+<h1>Rails desde Zero</h1>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="01_introduccio/01_instalacio/2">
+<p><img src="file/assets/images/rails.png" alt="Rails logo"/>
 
-    
+<h1>Rails desde Zero</h1>
 
-    
+<h2>Instal.laci&#xF3;</h2>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="01_introduccio/01_instalacio/3">
+<h1>Instal.laci&#xF3;</h1>
 
-    
-      <h2>Authors</h2>
-      <p>Estanislau Trepat (estanis@etrepat.com)<br/>      </p>
-    
+<ol>
+<li>Git</li>
+<li>Eines d'entorn</li>
+<li>RVM, Gemsets i Ruby</li>
+<li>Bundler</li>
+<li>Rails</li>
+</ol>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="01_introduccio/01_instalacio/4">
+<h1>Instal.laci&#xF3;</h1>
 
-    
-      <h2>Contact</h2>
-      <p>Estanislau Trepat (etrepat@gmail.com)<br/>      </p>
-    
+<h2>1. Git</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="01_introduccio/01_instalacio/5">
+<p>Git es pot instal.lar directament descarregant-lo de la web (binari o per compilar)</p>
 
-    <h2>Download</h2>
-    <p>
-      You can download this project in either
-      <a href="https://github.com/etrepat/rdz-slides/zipball/master">zip</a> or
-      <a href="https://github.com/etrepat/rdz-slides/tarball/master">tar formats.
-    </p>
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
-      by running:
-      <pre>$ git clone git://github.com/etrepat/rdz-slides</pre>
-    </p>
+<p><a href="http://git-scm.com/">http://git-scm.com/</a></p>
 
-    <div class="footer">
-      get the source code on GitHub : <a href="https://github.com/etrepat/rdz-slides">etrepat/rdz-slides</a>
-    </div>
+<p>&#xF3;, mitjan&#xE7;ant un gestor de paquets</p>
 
-  </div>
+<p>OSX</p>
+
+<pre class="sh_sh"><code>$ brew install git</code></pre>
+
+<p>Linux</p>
+
+<pre class="sh_sh"><code>$ sudo apt-get install git-core</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="01_introduccio/01_instalacio/6">
+<h1>Instal.laci&#xF3;</h1>
+
+<h2>2. Eines d'entorn</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="01_introduccio/01_instalacio/7">
+<h1>Instal.lacio</h1>
+
+<h2>2. Eines d'entorn</h2>
+
+<ul>
+<li>GCC i llibreries</li>
+<li>Motor de BD i/o bindings per a Ruby</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="01_introduccio/01_instalacio/8">
+<h1>Instal.lacio</h1>
+
+<h2>2. Eines d'entorn</h2>
+
+<h3>GCC i llibreries</h3>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="01_introduccio/01_instalacio/9">
+<h2>OSX</h2>
+
+<p>Directament v&#xED;a XCode (versi&#xF3; &gt;= 4.1.x) &#xF3; nom&#xE9;s el compilador desde
+<a href="http://git.io/osxgcc">http://git.io/osxgcc</a></p>
+
+<h2>Linux</h2>
+
+<p>Compilador GCC + eines</p>
+
+<pre class="sh_sh"><code>$ sudo apt-get install build-essential</code></pre>
+
+<p>Llibreries b&#xE0;siques</p>
+
+<pre class="sh_sh"><code>$ sudo apt-get install bison openssl libreadline6
+libreadline6-dev curl zlib1g zlib1g-dev libssl-dev
+libyaml-dev libxml2-dev libxslt-dev autoconf</code></pre>
+
+<p><a href="https://gist.github.com/481301">https://gist.github.com/481301</a></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="01_introduccio/01_instalacio/10">
+<h1>Instal.lacio</h1>
+
+<h2>2. Eines d'entorn</h2>
+
+<h3>Motor de BD i/o bindings per a Ruby</h3>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="01_introduccio/01_instalacio/11">
+<h2>OSX</h2>
+
+<p><a href="http://mxcl.github.com/homebrew/">Homebrew</a></p>
+
+<p><em>"Homebrew is the easiest and most flexible way to install the UNIX tools Apple
+didn't include with OS X."</em></p>
+
+<p><a href="https://github.com/mxcl/homebrew/wiki/installation">https://github.com/mxcl/homebrew/wiki/installation</a></p>
+
+<p>Un cop instal.lat...</p>
+
+<pre class="sh_sh"><code>$ brew install sqlite3</code></pre>
+
+<p>&#xF3;</p>
+
+<pre class="sh_sh"><code>$ brew install postgresql</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content small" ref="01_introduccio/01_instalacio/12">
+<h2>Linux</h2>
+
+<p>Utilitzant el gestor de paquets de la nostra distribuci&#xF3; (en aquest cas, debian)</p>
+
+<p>SQLite 3</p>
+
+<pre class="sh_sh"><code>$ sudo apt-get install libsqlite3-0 libsqlite3-dev sqlite3</code></pre>
+
+<p>PostgreSQL</p>
+
+<pre class="sh_sh"><code>$ sudo apt-get install postgresql postgresql-client postgresql-doc
+libpq-dev</code></pre>
+
+<p>Imagemagick</p>
+
+<pre class="sh_sh"><code>$ sudo apt-get install imagemagick libmagickcore-dev libmagickwand-dev</code></pre>
+
+<p>Etc&#xE9;tera</p>
+
+<pre class="sh_sh"><code>$ sudo apt-get install blah blah blah ...</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="01_introduccio/01_instalacio/13">
+<h1><img src="file/assets/images/rvm_logo.png" alt="RVM Logo"/>
+</h1>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="01_introduccio/01_instalacio/14">
+<h1>Instal.lacio</h1>
+
+<h2>3. RVM, Gemsets i Ruby</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="01_introduccio/01_instalacio/15">
+<h2>RVM</h2>
+
+<h3><a href="http://beginrescueend.com/">http://beginrescueend.com/</a></h3>
+
+<p>Instal.lem via</p>
+
+<pre class="sh_sh small"><code>$ bash &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)</code></pre>
+
+<p>Per a que RVM es carregui autom&#xE0;ticament a cada sessi&#xF3; de terminal</p>
+
+<pre class="sh_sh small"><code>$ echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] &amp;&amp; . "$HOME/.rvm/scripts/rvm" ' &gt;&gt; ~/.bash_profile</code></pre>
+
+<p>Comprobar que est&#xE0; instal.lat correctament</p>
+
+<pre class="sh_sh small"><code>$ type rvm | head -1</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="01_introduccio/01_instalacio/16">
+<h2>Ruby</h2>
+
+<p>Un cop RVM est&#xE1; funcionant i passa a gestionar-nos les nostres instal.lacions dels
+diferents int&#xE8;rprets de ruby ja podem procedir a instal.lar-lo</p>
+
+<p>Llistar els diferents int&#xE8;rprets de Ruby coneguts</p>
+
+<pre class="sh_sh small"><code>$ rvm list known
+...</code></pre>
+
+<p>Instal.lar una versi&#xF3; de ruby</p>
+
+<pre class="sh_sh small"><code>$ rvm install 1.9.3
+$ ruby -v
+ruby 1.9.3p0 (2011-10-30 revision 33570) [x86_64-darwin11.2.0]</code></pre>
+
+<p>Utilitzar un ruby (instalat previament)</p>
+
+<pre class="sh_sh small"><code>$ rvm use 1.9.2
+Using /Users/user/.rvm/gems/ruby-1.9.2-p290
+$ ruby -v
+ruby 1.9.2p290 (2011-07-09 revision 32553) [x86_64-darwin11.0.0]
+$ rvm use 1.9.3 --default
+Using /Users/user/.rvm/gems/ruby-1.9.3-p0</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="01_introduccio/01_instalacio/17">
+<h2>Gemsets</h2>
+
+<p>RVM ens proporciona entorns de ruby compartimentalitzats i independents. El que vol
+dir que l'int&#xE8;rpret de ruby, les gemes i l'irb est&#xE1;n tots separats i auto-continguts.
+Del sistema i entre ells.</p>
+
+<p>Crear un gemset</p>
+
+<pre class="sh_sh small"><code>$ rvm gemset create rails31
+Gemset 'rails31' created.</code></pre>
+
+<p>Utilitzar-lo</p>
+
+<pre class="sh_sh small"><code>$ rvm use 1.9.3@rails31
+Using /Users/user/.rvm/gems/ruby-1.9.3-p0 with gemset rails31
+$ gem install blah
+...
+$ gem install bluh
+...</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="01_introduccio/01_instalacio/18">
+<h1>Instal.lacio</h1>
+
+<h2>4. Bundler</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="01_introduccio/01_instalacio/19">
+<h2>Bundler</h2>
+
+<p>Bundler gestiona les <em>depend&#xE8;ncies d'una aplicaci&#xF3;</em> durant tot el seu cicle
+de vida i a trav&#xE9;s de totes les m&#xE0;quines d'una forma sistem&#xE0;tica i repetible.</p>
+
+<pre class="sh_sh"><code>$ gem install bundler --no-rdoc --no-ri</code></pre>
+
+<p>Tamb&#xE9; podem instal.lar-lo en el gemset especial '@global' per a tenir-lo sempre
+disponible.</p>
+
+<pre class="sh_sh"><code>$ rvm use 1.9.3@global
+$ gem install bundler --no-rdoc --no-ri
+$ rvm use 1.9.3@[el gemset que teniem definit]</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="01_introduccio/01_instalacio/20">
+<h1>Instal.lacio</h1>
+
+<h2>5. Rails</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="01_introduccio/01_instalacio/21">
+<h2>Rails</h2>
+
+<pre class="sh_sh"><code>$ gem install rails
+...</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="01_introduccio/02_exemple/1">
+<p><img src="file/assets/images/rails.png" alt="Rails logo"/>
+
+<h1>Rails desde Zero</h1>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="01_introduccio/02_exemple/2">
+<p><img src="file/assets/images/rails.png" alt="Rails logo"/>
+
+<h1>Rails desde Zero</h1>
+
+<h2>Aplicaci&#xF3; en 5 minuts</h2>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="01_introduccio/02_exemple/3">
+<h1>Aplicaci&#xF3; en 5 minuts</h1>
+
+<p>Tot seguit prepararem una petita aplicaci&#xF3; per a gestionar llistes
+de tasques.</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="01_introduccio/02_exemple/4">
+<h1>1</h1>
+
+<p>Creem una nova aplicaci&#xF3; Rails i ens situem en el seu directori</p>
+
+<pre class="sh_sh"><code>$ rails new todos
+...
+$ cd todos</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="01_introduccio/02_exemple/5">
+<h1>2</h1>
+
+<p>Generem un "scaffold" (model, vista i controlador) per a generar r&#xE0;pidament
+el codi necessari per a una senzilla llista de tasques</p>
+
+<pre class="sh_sh small"><code>$ rails g scaffold todo name:string due_on:date completed:boolean
+...</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="01_introduccio/02_exemple/6">
+<h1>3</h1>
+
+<p>Executem la migraci&#xF3; de la base de dades</p>
+
+<pre class="sh_sh"><code>$ bundle exec rake db:migrate</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="01_introduccio/02_exemple/7">
+<h1>4</h1>
+
+<p>Llancem el servidor i ens dirigim a: <a href="http://localhost:3000/todos">http://localhost:3000/todos</a></p>
+
+<pre class="sh_sh"><code>$ rails s</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="01_introduccio/02_exemple/8">
+<h1>i 5.</h1>
+</div>
+</div><div class="slide" data-transition="none">
+  <div class="content" ref="02_tour_de_ruby/01_introduccio/1">
+<p><img src="file/assets/images/rails.png" alt="Rails logo"/>
+
+<h1>Rails desde Zero</h1>
+
+<h2>Nocions de Ruby</h2>
+
+<p><img src="file/assets/images/ruby_logo.png" alt="Ruby logo"/>
+</p>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="02_tour_de_ruby/01_introduccio/2">
+<h1>Ruby</h1>
+
+<ul>
+<li>Generic, interpretat, GC</li>
+<li>Sintaxi neta</li>
+<li>Completament OO - <em>TOT</em> &#xE9;s un objecte (primitives, classes i nil)</li>
+<li>Permet programar en format procedural i funcional</li>
+<li>Tipus de dades din&#xE0;mics <em>("duck typing")</em></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/01_introduccio/3">
+<h1>Ruby</h1>
+
+<h2><a href="http://ruby-doc.org/">http://ruby-doc.org/</a></h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/01_introduccio/4">
+<h1>Irb</h1>
+
+<h2>Irb &#xE9;s la interf&#xED;cie interactiva a Ruby</h2>
+
+<p>Executar en una finestra del terminal</p>
+
+<pre class="sh_sh"><code>$ irb</code></pre>
+
+<p>S'utilitza, principalment, per a testejar petits trocets de
+codi.</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="02_tour_de_ruby/01_introduccio/5">
+<p><img src="file/assets/images/ruby_logo.png" alt="Ruby logo"/>
+
+<h1>Introduccio a la sintaxi</h1>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/01_introduccio/6">
+<h1>Identificadors</h1>
+
+<pre class="sh_ruby"><code>MyClass, MyModule
+PI = 3.141592
+un_metode
+variable_local = 12
+@variable_instancia
+@@variable_classe
+$variable_global</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/01_introduccio/7">
+<h1>Tipus de dades</h1>
+
+<p>En ruby <em>tot</em> &#xE9;s un objecte. Provem el seg&#xFC;ent en una sessi&#xF3; de Irb</p>
+
+<pre class="sh_ruby"><code>123.class
+nil.class
+true.class
+"hola mundo!".class
+:symbol.class</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="02_tour_de_ruby/01_introduccio/8">
+<h1>Certesa</h1>
+
+<ul>
+<li>En ruby els <strong>&#xFA;nics</strong> valors que s'evaluen com a fals s&#xF3;n: <code>false, nil</code></li>
+<li>A difer&#xE8;ncia d'altres llenguatges &#xF3;n el zero (0) &#xF3; una cadena buida ("")
+s'evaluen com a fals</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="02_tour_de_ruby/01_introduccio/9">
+<h1>nil</h1>
+
+<ul>
+<li>L'abs&#xE8;ncia d'un objecte en ruby es representa mitjan&#xE7;ant la paraula
+reservada <code>nil</code></li>
+<li><code>nil</code> &#xE9;s la &#xFA;nica instancia de <code>NilClass &lt; Object &lt; BasicObject</code></li>
+<li><code>nil</code> s'evalua com a fals</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="02_tour_de_ruby/01_introduccio/10">
+<h1>Constants</h1>
+
+<p>Les constants <em>sempre</em> comencen per una lletra maj&#xFA;scula</p>
+
+<pre class="sh_sh"><code>Constant = 12   # Aix&#xF3; &#xE9;s una constant
+constant = 12   # Aix&#xF3; no, &#xE9;s una variable</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/01_introduccio/11">
+<h1>Operadors</h1>
+
+<h2>Assignaci&#xF3;</h2>
+
+<p>Mitjan&#xE7;ant el signe d'igualtat (=)</p>
+
+<pre class="sh_ruby"><code>color = "vermell"
+un_altre_color = "blau"
+numero = 123</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/01_introduccio/12">
+<h1>Operadors</h1>
+
+<h2>Auto-assignaci&#xF3;</h2>
+
+<pre class="sh_ruby"><code>x = 1       # =&gt; 1
+x += x      # =&gt; 2
+x -= x      # =&gt; 0
+x += 4      # =&gt; 4
+x *= x      # =&gt; 16
+x **= x     # =&gt; (16^16)
+x /= x      # =&gt; 1</code></pre>
+
+<p>No hi ha operadors d'increment o decrement (++) en Ruby</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/01_introduccio/13">
+<h1>Operadors</h1>
+
+<h2>Assignaci&#xF3; m&#xFA;ltiple</h2>
+
+<pre class="sh_ruby"><code>color1, color2, color3 = "vermell", "blau", "verd"
+colors, ciutat = ["vermell", "blau", "verd"], "Barcelona"</code></pre>
+
+<h2>Assignaci&#xF3; condicional</h2>
+
+<pre class="sh_ruby"><code>config ||= "valor"</code></pre>
+
+<p>L'operador <code>||=</code> comproba si la variable &#xE9;s nula (o inexistent) i li
+assigna el valor (objecte) especificat</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/01_introduccio/14">
+<h1>Operadors</h1>
+
+<h2>Comparaci&#xF3;</h2>
+
+<pre class="sh_ruby"><code>==      # =&gt; Equival&#xE8;ncia
+!=      # =&gt; No igual
+&lt;, &lt;=   # =&gt; M&#xE9;s petit (o igual) que
+&gt;, &gt;=   # =&gt; M&#xE9;s gran (o igual) que
+&lt;=&gt;     # Combinat: 0 si iguals,
+        # -1 si el segon &gt; que el primer
+        # 1 si el segon &lt; que el primer</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/01_introduccio/15">
+<h1>Operadors</h1>
+
+<h2>And (&amp;&amp;), Or (||), Not(!)</h2>
+
+<pre class="sh_ruby"><code>x = false
+y = true
+
+x &amp;&amp; y  # =&gt; false
+X || y  # =&gt; true
+!x      # =&gt; true
+!y      # =&gt; false</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="02_tour_de_ruby/02_tipus/1">
+<p><img src="file/assets/images/ruby_logo.png" alt="Ruby logo"/>
+
+<h1>Tipus de dades</h1>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="02_tour_de_ruby/02_tipus/2">
+<h1>Nombres (Numeric)</h1>
+
+<ul>
+<li>En ruby els nombres es representen mitjan&#xE7;ant la classe
+base <code>Numeric</code></li>
+<li>La majoria dels nombres que ens trobarem s&#xF3;n subclasses de <code>Fixnum</code> o
+<code>Float</code></li>
+<li>Tamb&#xE9; existeixen els tipus num&#xE9;rics: <code>BigDecimal, Complex, Rational</code></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/02_tipus/3">
+<h1>Nombres (Numeric)</h1>
+
+<p>Exemples</p>
+
+<pre class="sh_ruby"><code>1 + 3 - 7
+=&gt; -3
+3 / 4
+=&gt; 0
+3 / 4.0
+=&gt; 0.75
+3 * 3
+=&gt; 9
+185 * 1.18
+=&gt; 218.3
+12**2
+=&gt; 144
+8 % 2
+=&gt; 0</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/02_tipus/4">
+<h1>Nombres (Numeric)</h1>
+
+<p>El m&#xF2;dul <code>Math</code> cont&#xE9; tot de funcions matem&#xE0;tiques est&#xE1;ndar</p>
+
+<pre class="sh_ruby"><code>y = 144
+x = Math.sqrt(y)
+=&gt; 12
+Math.hypot(3, 4)
+=&gt; 5 # sqrt(x**2, y**2)</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection smbullets incremental" ref="02_tour_de_ruby/02_tipus/5">
+<h1>Cadenes (String)</h1>
+
+<ul>
+<li>Objectes de la classe <code>String</code></li>
+<li>Soporta nativament UTF-8 i cadenes multi-byte</li>
+<li>Poden estar representades per comilles simples o dobles</li>
+<li>Operadors de concatenaci&#xF3; i acc&#xE9;s: +, &lt;&lt;, []</li>
+<li>Es poden interpolar amb l'expressi&#xF3; #{}</li>
+<li>Alguns m&#xE8;todes &#xFA;tils de la classe <code>String</code>: <code>size, each_char, each_line,
+empty?, gsub, strip, upcase</code></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/02_tipus/6">
+<h1>Cadenes (String)</h1>
+
+<pre class="sh_ruby"><code>cadena = "Hola"
+cadena &lt;&lt; " Ruby"
+cadena = cadena + "!"
+puts cadena</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/02_tipus/7">
+<h1>Cadenes (String)</h1>
+
+<pre class="sh_ruby"><code># Amb entrecomillat doble,
+# s'interpola l'expressi&#xF3; #{}
+puts "Ara son les: #{Time.now}"
+
+# Amb entrecomillat simple no
+puts 'Ara son les #{Time.now}'</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/02_tipus/8">
+<h1>Cadenes (String)</h1>
+
+<p>Podem utilitzar seq&#xFC;&#xE8;ncies d'escapament (a la C)</p>
+
+<pre class="sh_ruby"><code>puts "\t Prova\n"
+
+puts 'Aix&#xF2; &#xE9;s un \'EXEMPLE\''</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/02_tipus/9">
+<h1>Cadenes (String)</h1>
+
+<p>Per accedir als car&#xE0;cters podem utilitzar l'operador <code>[]</code></p>
+
+<pre class="sh_ruby small"><code>a = "Hola"
+puts "a[1] == #{a[1]}"</code></pre>
+
+<p>Utilitzar funcions de la classe <code>String</code></p>
+
+<pre class="sh_ruby small"><code>a = "partirem aquesta cadena per espais".split(' ').join(', ')
+puts a
+=&gt; "partirem, aquesta, cadena, per, espais"
+
+b = "ho vull en majuscules".upcase
+puts b
+=&gt; "HO VULL EN MAJUSCULES"
+
+c = ""
+puts c.empty?
+=&gt; true
+c = "no buida"
+puts c.empty?
+=&gt; false</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="02_tour_de_ruby/02_tipus/10">
+<h1>Symbol (s&#xED;mbols)</h1>
+
+<ul>
+<li>S&#xF3;n cadenes inmutables</li>
+<li>Es prefixen per mitj&#xE0; de dos punts: <code>:un_simbol</code></li>
+<li>S'utilitzen molts cops com a claus d'un Hash o per representar noms
+de m&#xE8;todes o funcions</li>
+<li>Podem convertir cadenes i simbols entre si mitjan&#xE7;ant: <code>to_s</code> i <code>to_sym</code></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/02_tipus/11">
+<h1>Symbol (s&#xED;mbols)</h1>
+
+<pre class="sh_ruby"><code>a, b = "hola", "hola"
+a == b
+=&gt; true
+a.object_id == b.object_id
+=&gt; false
+
+a, b = :hola, :hola
+a == b
+=&gt; true
+a.object_id == b.object_id
+=&gt; true</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="02_tour_de_ruby/02_tipus/12">
+<h1>Array</h1>
+
+<ul>
+<li><p>Seq&#xFC;&#xE8;ncies d'objectes din&#xE0;miques (mida variable), sense tipus i
+indexades (desde zero)</p></li>
+<li><p>Array i String comparteixen alguns operadors: <code>+, &lt;&lt;, []</code></p></li>
+<li><p>La classe <code>Array</code> inclou el m&#xF2;dul <code>Enumerable</code>, el que dona acc&#xE9;s
+a un conjunt de m&#xE8;todes com: <code>each, select, map, inject, etc.</code></p></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/02_tipus/13">
+<h1>Array</h1>
+
+<p>Sem&#xE0;ntica similar</p>
+
+<pre class="sh_ruby"><code>a = ["Ruby", 3.141592]
+a &lt;&lt; "Rails"
+puts a[1]
+=&gt; 3.141592
+puts a[1..2]
+puts a[1, 2]
+b = [3, 4, 5, "vint-i-dos"]
+puts a+b</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/02_tipus/14">
+<h1>Array</h1>
+
+<p>Iterar els elements</p>
+
+<pre class="sh_ruby"><code>c = ["pera", "poma", "pressec"]
+c.each do |fruita|
+  puts "#{fruita.capitalize}, mmm..."
+end</code></pre>
+
+<p>Un "block" es pot entendre, de moment, com una funci&#xF3; (o m&#xE9;tode) an&#xF3;nima</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/02_tipus/15">
+<h1>Array</h1>
+
+<p>El modul <code>Enumerable</code> cont&#xE9; un <strong>munt</strong> de funcions &#xFA;tils</p>
+
+<pre class="sh_ruby"><code>c = [3, 3, 2, 1]
+c.join(' | ')
+c.map { |x| x**2 }
+c.select { |x| x % 2 == 0 }
+c.reject { |x| x &lt; 3 }
+c.inject { |sum, i| sum + i }
+c.include?(2)
+c.sort
+c.uniq
+c.uniq.select { |x| x &lt; 3 }.sort</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="02_tour_de_ruby/02_tipus/16">
+<h1>Hash</h1>
+
+<ul>
+<li>Un <em>hash</em> &#xE9;s un array associatiu de parells clau-valor</li>
+<li>Com a <em>clau</em> podem utilitzar, gaireb&#xE9;, qualsevol objecte. Habitualment
+s'utilitzen symbols.</li>
+<li>La classe <code>Hash</code> tamb&#xE9; inclou els m&#xE8;todes del m&#xF2;dul <code>Enumerable</code>.</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/02_tipus/17">
+<h1>Hash</h1>
+
+<p>Sintaxi</p>
+
+<pre class="sh_ruby"><code>hash = {
+  :leia =&gt; "Princesa",
+  :han =&gt; "Rebel",
+  :luke =&gt; "Jedi"
+}
+puts hash[:luke]
+=&gt; "Jedi"</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/02_tipus/18">
+<h1>Hash</h1>
+
+<p>Treballar amb els elements d'un Hash</p>
+
+<pre class="sh_ruby"><code>hash = {}
+hash[:han]
+=&gt; nil
+hash[:han] = "Fugitiu"
+=&gt; "Fugitiu"
+hash.delete(:han)
+hash[:han]
+=&gt; nil</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/02_tipus/19">
+<h1>Hash</h1>
+
+<p>Iterar un hash</p>
+
+<pre class="sh_ruby"><code>hash.each do |clau, valor|
+  puts "#{clau}: #{valor}"
+end
+
+# Accedir a les claus com un Array
+hash.keys
+=&gt; [:leia, :han, :luke]</code></pre>
+
+<p>Recordem que podem utilitzar els m&#xE8;todes del m&#xF2;dul <code>Enumerable</code> com <code>map</code>,
+<code>select</code>, <code>reject</code>, ...</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="02_tour_de_ruby/02_tipus/20">
+<h1>Rangs (Range)</h1>
+
+<ul>
+<li>Un rang &#xE9;s un objecte que representa tots els valors dins d'un rang:
+<code>1..100</code></li>
+<li>Utiltizant 3 punts no inclou l'&#xFA;ltim valor <code>1...100</code></li>
+<li>Alguns m&#xE8;todes &#xFA;tils: <code>each, step, include?</code></li>
+<li>Es poden crear rangs d'objectes propis sempre que implementin
+els m&#xE8;todes: <code>&lt;=&gt;</code> i <code>succ</code></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/02_tipus/21">
+<h1>Rangs (Range)</h1>
+
+<p>Sintaxi</p>
+
+<pre class="sh_ruby"><code>a = 1..5
+b = 1...5
+a.to_a
+=&gt; [1,2,3,4,5]
+b.to_a
+=&gt; [1,2,3,4]</code></pre>
+
+<p>Podem iterar tamb&#xE9; els rangs</p>
+
+<pre class="sh_ruby"><code>(1..100).each { |n| puts "#{n}" }</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="02_tour_de_ruby/03_control/1">
+<p><img src="file/assets/images/ruby_logo.png" alt="Ruby logo"/>
+
+<h1>Estructures de control</h1>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="02_tour_de_ruby/03_control/2">
+<h1>Condicionals</h1>
+
+<ul>
+<li>Clausules <code>if</code>: if, elsif, else, end</li>
+<li>Clasules <code>case</code></li>
+<li>Les estructures condicionals retornen el valor de l'ultima expressi&#xF3;
+evaluada</li>
+<li>Operador ternari: <code>?</code></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/03_control/3">
+<h1>Condicionals</h1>
+
+<h2>if</h2>
+
+<pre class="sh_ruby"><code>c = 10
+if c &gt; 10
+  puts "M'he passat!"
+elsif c == 10
+  puts "He arribat!"
+else
+  puts "Venint..."
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/03_control/4">
+<h1>Condicionals</h1>
+
+<h2>if</h2>
+
+<pre class="sh_ruby"><code>c = 100
+missatge = if c == 100
+             "Has encertat"
+           else
+             "Has fallat"
+           end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/03_control/5">
+<h1>Condicionals</h1>
+
+<h2>if</h2>
+
+<p>Tamb&#xE9; es pot uitlitzar com a modificador de sent&#xE8;ncia</p>
+
+<pre class="sh_ruby"><code>height = 1.62
+puts "Que alt que ets!" if height &gt;= 1.85</code></pre>
+
+<p>Tamb&#xE9; es pot utilitzar <code>unless</code> com a representaci&#xF3; de <code>if !(expr)</code></p>
+
+<pre class="sh_ruby"><code>puts "Que alt que ets!" unless height &lt; 1.85</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/03_control/6">
+<h1>Condicionals</h1>
+
+<h2>case</h2>
+
+<pre class="sh_ruby"><code>x = 17
+case x
+when 0
+when 2..5
+  puts "Ah!"
+when x.to_s.downcase == "Estanis"
+  puts "Ondia!"
+else
+  puts "No res"
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="02_tour_de_ruby/03_control/7">
+<h1>Bucles</h1>
+
+<ul>
+<li>Les col.leccions basades en el m&#xF2;dul <code>Enumerable</code> normalment es recorrent
+mitjan&#xE7;ant el m&#xE8;tode <code>each</code></li>
+<li>Es pot utilitzar tamb&#xE9; l'expressi&#xF3;: <code>for..in</code></li>
+<li>Similars a altres llenguages: <code>while, until</code></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/03_control/8">
+<h1>Bucles</h1>
+
+<h2>Exemples</h2>
+
+<pre class="sh_ruby"><code>count = 0
+while count &lt; 3
+  puts count
+  count += 1
+end</code></pre>
+
+<p>Tamb&#xE9; com a modificador de sent&#xE8;ncia</p>
+
+<pre class="sh_ruby"><code>count = 0
+puts count while (count &lt; 3 &amp;&amp; count += 1)</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/03_control/9">
+<h1>Bucles</h1>
+
+<h2>Exemples</h2>
+
+<p>Es pot utilitzar <code>for..in</code> per iterar col.leccions. Podem utiltizar
+les paraules clau <code>next</code> i <code>break</code> dins dels bucles per a saltar-nos elements
+i "trencar-los"</p>
+
+<pre class="sh_ruby"><code>for value in [0, 1, 2, 3, 4]
+  next if value == 1
+  break if value == 3
+  puts value
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/03_control/10">
+<h1>Bucles</h1>
+
+<h2>Exemples</h2>
+
+<pre class="sh_ruby"><code>count = 0
+until count == 3
+   puts count
+   count += 1
+end</code></pre>
+
+<p>Tamb&#xE9; com a modificador de sent&#xE8;ncia</p>
+
+<pre class="sh_ruby"><code>count = 0
+puts(count += 1) until count == 3</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="02_tour_de_ruby/03_control/11">
+<h1>Excepcions</h1>
+
+<p>Les excepcions es "llancen" mitjan&#xE7;ant la instrucci&#xF3; <code>raise</code></p>
+
+<pre class="sh_ruby"><code>raise StandardError, "WTF!"</code></pre>
+
+<p>i es capturen per mitj&#xE0; del bloc <code>begin..rescue..ensure..end</code></p>
+
+<pre class="sh_ruby"><code>begin
+  # codi que pot fallar
+rescue Exception =&gt; e
+  # si fallo, m'executo
+ensure
+  # m'executo sempre
+end</code></pre>
+
+<p>Podem definir les nostres propies excepcions creant subclasses de les
+definides per Ruby</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/03_control/12">
+<h1>Excepcions</h1>
+
+<h2>Exemple</h2>
+
+<pre class="sh_ruby small"><code>url       = "http://some.url"
+attempts  = 0
+begin
+  contents = open(url).read
+  puts contents
+rescue SocketError =&gt; e
+  puts "No he pogut obrir #{url}, intents: #{attempts}: #{e}"
+  attempts += 1
+  retry unless attempts &gt;= 3
+rescue Exception =&gt; e
+  puts "Error desconegut: #{e.message} #{e.backtrace.join("\n")}"
+  raise
+ensure
+  puts "Sempre m'executo, passi el que passi"
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="02_tour_de_ruby/04_metodes/1">
+<p><img src="file/assets/images/ruby_logo.png" alt="Ruby logo"/>
+
+<h1>M&#xE8;todes</h1>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/04_metodes/2">
+<h1>M&#xE8;todes</h1>
+
+<h2>Definici&#xF3;</h2>
+
+<pre class="sh_ruby"><code>def saluda(nom)
+  puts "Hola #{nom}!"
+end</code></pre>
+
+<p>Els par&#xE8;ntesis s&#xF3;n opcionals tant en la definici&#xF3; com en la crida, pero
+poden &#xE9;sser necessaris</p>
+
+<pre class="sh_ruby"><code>saluda "Jordi"
+=&gt; "Hola Jordi!"
+saluda("Jordi").downcase
+=&gt; "hola jordi!"</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/04_metodes/3">
+<h1>M&#xE8;todes</h1>
+
+<h2>Valors de retorn</h2>
+
+<p>Els m&#xE8;todes en ruby sempre retornen el valor de l'&#xFA;ltima expressi&#xF3; evaluada
+(igual que en les sent&#xE8;ncies condicionals)</p>
+
+<pre class="sh_ruby"><code>def suma(x, y)
+  x + y
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/04_metodes/4">
+<h1>M&#xE8;todes</h1>
+
+<h2>Valors de retorn</h2>
+
+<p>Tamb&#xE9; podem fer retornar un m&#xE8;tode de forma expl&#xED;cita mitjan&#xE7;ant la
+instrucci&#xF3; <code>return</code></p>
+
+<pre class="sh_ruby"><code>def authenticate(username)
+  return unless username == "jaume"
+  puts "Benvingut, Jaume!"
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/04_metodes/5">
+<h1>M&#xE8;todes</h1>
+
+<h2>Par&#xE0;metres</h2>
+
+<p>Podem utilitzar qualsevol tipus d'objecte com a paremetre d'un m&#xE8;tode. Molt sovint
+veurem que s'utilitzen objectes <code>Hash</code>.</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/04_metodes/6">
+<h1>M&#xE8;todes</h1>
+
+<pre class="sh_ruby"><code>def distancia(x=0, y=0)
+  Math.hypot(x, y)
+end
+
+def saluda(nom, opcions={})
+  es_de_nit = opcions[:nit] || false
+  if es_de_nit
+    puts "Bona nit, #{nom}!"
+  else
+    puts "Bon dia, #{nom}!"
+  end
+end</code></pre>
+
+<p>Com hem vist podem especificar valors per defecte en els par&#xE1;metres</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="02_tour_de_ruby/05_clases/1">
+<p><img src="file/assets/images/ruby_logo.png" alt="Ruby logo"/>
+
+<h1>Clases</h1>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/05_clases/2">
+<h1>Clases</h1>
+
+<h2>Definici&#xF3;</h2>
+
+<pre class="sh_ruby"><code>class Animal
+  def viu?
+  end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets" ref="02_tour_de_ruby/05_clases/3">
+<h1>Clases</h1>
+
+<h2>Variables</h2>
+
+<ul>
+<li><code>@variable</code> representa una variable d'instancia</li>
+<li><code>@@variable</code> representa una variable de classe</li>
+<li><code>self</code> representa la instancia actual (this)</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/05_clases/4">
+<h1>Clases</h1>
+
+<h2>Variables</h2>
+
+<pre class="sh_ruby"><code>class Persona
+  @nom = "Estanis"
+
+  def saluda
+    "Hola #{@nom!}"
+  end
+
+  def renombra(nom)
+    @nom = nom
+  end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/05_clases/5">
+<h1>Clases</h1>
+
+<h2>Variables</h2>
+
+<p>Com s'utilitza?</p>
+
+<pre class="sh_ruby"><code>p = Persona.new
+puts p.saluda   # =&gt; "Hola Estanis!"
+p.renombra("Jaume")
+puts p.saluda   # =&gt; "Hola Jaume!"</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/05_clases/6">
+<h1>Clases</h1>
+
+<h2>Constructor</h2>
+
+<p>S'utilitza el m&#xE8;tode especial <code>initialize</code> que es crida sempre que creem
+una nova instancia d'una classe.</p>
+
+<pre class="sh_ruby"><code>class Persona
+  def initialize(nom)
+    @nom = nom
+  end
+end
+
+p = Persona.new("Estanis")</code></pre>
+
+<p>Els objectes s'instancien amb el m&#xE8;tode <code>new</code></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/05_clases/7">
+<h1>Clases</h1>
+
+<h3>Accedint a les variables d'instancia</h3>
+
+<pre class="sh_ruby"><code>class Persona
+  def initialize(nom)
+    @nom = nom
+  end
+
+  def nom
+    @nom
+  end
+
+  def nom=(nom)
+    @nom = nom
+  end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets" ref="02_tour_de_ruby/05_clases/8">
+<h1>Clases</h1>
+
+<h3>Accedint a les variables d'instancia</h3>
+
+<p>Per a no repetir sempre el mateix codi, ruby ens proporciona 3 m&#xE8;todes
+especials que defineixen el comportament anterior.</p>
+
+<p><code>attr_accessor</code>, <code>attr_reader</code> i <code>attr_writer</code></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/05_clases/9">
+<h1>Clases</h1>
+
+<h3>Accedint a les variables d'instancia</h3>
+
+<pre class="sh_ruby"><code>class Persona
+  def initialize(nom)
+    @nom = nom
+  end
+
+  attr_accessor :nom
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/05_clases/10">
+<h1>Clases</h1>
+
+<h2>Her&#xE8;ncia</h2>
+
+<p>Els m&#xE8;todes i les variables poden ser <em>heredats</em> d'una altra classe per mitj&#xE0;
+de l'operador <code>&lt;</code>. Ruby no soporta her&#xE8;ncia m&#xFA;ltiple</p>
+
+<pre class="sh_ruby"><code>class Persona
+  attr_accessor :nom
+end
+
+class Empleat &lt; Persona
+  attr_accessor :carrec
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/05_clases/11">
+<h1>Clases</h1>
+
+<h2>Control d'acc&#xE9;s</h2>
+
+<p>Podem registrir l'acc&#xE9;s a les nostres variables i metodes mitjan&#xE7;ant les
+paraules reservades: <code>private</code> i <code>protected</code></p>
+
+<ul>
+<li><code>private</code>: accessible nom&#xE9;s per a la classe que els defineix</li>
+<li><code>protected</code>: accessible tamb&#xE9; per a les subclasses</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/05_clases/12">
+<h1>Clases</h1>
+
+<h3>Control d'acc&#xE9;s</h3>
+
+<pre class="sh_ruby small"><code>class Persona
+  attr_accessor :nom
+
+  protected
+
+  def saluda
+    "Hola #{@nom}!"
+  end
+
+  private
+
+  def renombra(nom)
+    @nom = nom
+  end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/05_clases/13">
+<h1>Clases</h1>
+
+<h2>M&#xE8;todes de clase (est&#xE0;tics)</h2>
+
+<p>Es defineixen per prefixant-los amb la refer&#xE8;ncia a la inst&#xE0;ncia en curs</p>
+
+<pre class="sh_ruby"><code>class Persona
+  def self.crea(nom)
+    Persona.new(nom)
+  end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/05_clases/14">
+<h1>Clases</h1>
+
+<h2>M&#xE8;todes de clase (est&#xE0;tics)</h2>
+
+<p>Sint&#xE0;xi alternativa modificant la referencia a la inst&#xE0;ncia actual. Ja no
+cal prefixar-los.</p>
+
+<pre class="sh_ruby"><code>class Persona
+  class &lt;&lt; self
+    def crea(nom)
+      Persona.new(nom)
+    end
+  end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="02_tour_de_ruby/05_clases/15">
+<p><img src="file/assets/images/ruby_logo.png" alt="Ruby logo"/>
+
+<h1>M&#xF2;duls</h1>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets" ref="02_tour_de_ruby/05_clases/16">
+<h1>M&#xF2;duls</h1>
+
+<ul>
+<li>Un m&#xF2;dul es una col.lecci&#xF3; de m&#xE8;todes, constants i variables (de classe)</li>
+<li>Es poden incloure "mix in" dins de classes</li>
+<li>Els m&#xF2;duls no es poden instanciar</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/05_clases/17">
+<h1>M&#xF2;duls</h1>
+
+<p>Exemple</p>
+
+<pre class="sh_ruby"><code>module Edat
+  MITJANA_EDAT = 50
+
+  def edat=(edat)
+    @edat = edat
+  end
+
+  def edat
+    @edat
+  end
+
+  def gran?
+    edat &gt; MITJANA_EDAT
+  end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="02_tour_de_ruby/05_clases/18">
+<h1>M&#xF2;duls</h1>
+
+<p>Incloiem el m&#xF2;dul anterior en una classe
+    @@@ ruby
+    class Persona
+      include Edat # &lt;= !!
+      attr_accessor :name
+      ...
+      def initialize(name)
+        self.name = name
+      end
+    end</p>
+
+<pre><code>p = Persona.new("Jordi")
+p.edat = 36
+p.gran? # =&gt; false
+</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets" ref="02_tour_de_ruby/06_recursos">
+<p><img src="file/assets/images/ruby_logo.png" alt="Ruby logo"/>
+
+<h2>M&#xE9;s</h2>
+
+<ul>
+<li><a href="http://tryruby.org">http://tryruby.org</a></li>
+<li><a href="http://rubykoans.com/">http://rubykoans.com/</a></li>
+<li><a href="http://ruby-doc.org/">http://ruby-doc.org/</a></li>
+</ul>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="03_models/01_MVC/1">
+<p><img src="file/assets/images/rails.png" alt="Rails logo"/>
+
+<h1>Rails desde Zero</h1>
+
+<h2>MVC</h2>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/01_MVC/2">
+<h1>MVC en Rails</h1>
+
+<p><img src="file/assets/images/rails_mvc.png" alt="Rails MVC"/>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/01_MVC/3">
+<h1>Rails MVC</h1>
+
+<h2>Models</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/02_migracions/1">
+<h1>Models</h1>
+
+<h2>Migracions</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/02_migracions/2">
+<h1>Migracions</h1>
+
+<p>Anatomia d'una migraci&#xF3;</p>
+
+<pre class="sh_ruby"><code>class CreateProducts &lt; ActiveRecord::Migration
+  def change
+    create_table :products do |t|
+      t.string  :name
+      t.text    :description
+
+      t.timestamps
+    end
+  end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/02_migracions/3">
+<h1>Migracions</h1>
+
+<p>Una migraci&#xF3; &#xE9;s una subclasse de <code>ActiveRecord::Migration</code> que implementa
+dos m&#xE8;todes: <code>up</code> (crear modificacions) i <code>down</code> (desfer-les)</p>
+
+<ul>
+<li><code>create_table, drop_table, change_table</code></li>
+<li><code>add_column, change_column, rename_column, remove_column</code></li>
+<li><code>add_index, remove_index</code></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/02_migracions/4">
+<h1>Migracions</h1>
+
+<p>Els tipus de dades que podem utilitzar per als camps d'una taula en una
+migraci&#xF3; s&#xF3;n els que soporta <code>ActiveRecord</code>.</p>
+
+<p><code>:primary_key
+:string
+:text
+:integer
+:float
+:decimal
+:datetime
+:timestamp
+:time
+:date
+:binary
+:boolean</code></p>
+
+<p>Es mapejen autom&#xE0;ticament al tipus de dades corresponent segons el motor de BD. Per
+exemple, en MySQL un <code>:string</code> correspon a <code>VARCHAR(255)</code>.</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/02_migracions/5">
+<h1>Migracions</h1>
+
+<h2>Generar una migraci&#xF3;</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="03_models/02_migracions/6">
+<h2>Habitualment, podem crear una migraci&#xF3; de 2 maneres</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/02_migracions/7">
+<h1>1</h1>
+
+<p>Creant-la mitjan&#xE7;ant un model o scaffold</p>
+
+<pre class="sh_sh small"><code>rails generate model Product name:string description:text</code></pre>
+
+<p>el que ens crear&#xE0; una migraci&#xF3; com la seg&#xFC;ent:</p>
+
+<pre class="sh_ruby"><code>class CreateProducts &lt; ActiveRecord::Migration
+  def change
+    create_table :products do |t|
+      t.string :name
+      t.text :description
+
+      t.timestamps
+    end
+  end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/02_migracions/8">
+<h1>2</h1>
+
+<p>Individualment</p>
+
+<pre class="sh_sh small"><code>$ rails generate migration AddPartNumberToProducts</code></pre>
+
+<p>que ens crear&#xE0;:</p>
+
+<pre class="sh_ruby"><code>class AddPartNumberToProducts &lt; ActiveRecord::Migration
+  def change
+  end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/02_migracions/9">
+<h1>Migracions</h1>
+
+<h2>Creant una taula</h2>
+
+<pre class="sh_ruby"><code>create_table :products, :id =&gt; [true|false],
+  :options =&gt; '' do |t|
+  t.string  :name
+  t.text    :description
+  t.boolean :active, :null =&gt; false
+
+  t.timestamps
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/02_migracions/10">
+<h1>Migracions</h1>
+
+<h2>Modificant taules</h2>
+
+<pre class="sh_ruby"><code>change_table :products do |t|
+  t.remove :description, :name
+  t.string :part_number
+  t.index :part_number
+  t.rename :upccode, :upc_code
+end
+
+remove_column :products, :description
+remove_column :products, :name
+add_column :products, :part_number, :string
+add_index :products, :part_number
+rename_column :products, :upccode, :upc_code</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/02_migracions/11">
+<h1>Migracions</h1>
+
+<h2>Funcions d'ajuda (helpers)</h2>
+
+<pre class="sh_ruby"><code>create_table :products do |t|
+  t.timestamps
+end</code></pre>
+
+<p>Crea columnes <code>created_at</code> i <code>updated_at</code> que es mantenen autom&#xE0;ticament</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/02_migracions/12">
+<h1>Migracions</h1>
+
+<h2>Funcions d'ajuda (helpers)</h2>
+
+<pre class="sh_ruby"><code>create_table :products do |t|
+  t.references :category
+  # tamb&#xE9;
+  # t.belongs_to :category
+end</code></pre>
+
+<p>Crea el camp <code>category_id</code> associat del tipus adecuat</p>
+
+<p><strong>NO</strong> crea autom&#xE0;ticament les restriccions <code>FOREIGN_KEY</code></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/02_migracions/13">
+<h1>Migracions</h1>
+
+<h2>SQL</h2>
+
+<p>Podem utilitzar SQL en les migracions per mitj&#xE0; del m&#xE8;tode <code>execute</code></p>
+
+<pre class="sh_ruby small"><code>class ExampleMigration &lt; ActiveRecord::Migration
+  def change
+    create_table :products do |t|
+      t.references :category
+    end
+
+    # Afegim la clau foranea
+    execute &lt;&lt;-SQL
+      ALTER TABLE products
+        ADD CONSTRAINT fk_products_categories
+        FOREIGN KEY (category_id)
+        REFERENCES categories(id)
+    SQL
+  end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/02_migracions/14">
+<h1>Migracions</h1>
+
+<h3>Executant migracions</h3>
+
+<ul>
+<li><code>rake db:migrate [VERSION=N]</code></li>
+<li><code>rake db:rollback [STEP=3]</code></li>
+<li><code>rake db:migrate:up VERSION=N</code></li>
+<li><code>rake db:migrate:down VERSION=N</code></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/03_validacions/1">
+<h1>Models</h1>
+
+<h2>Validacions</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/03_validacions/2">
+<h1>Validacions</h1>
+
+<p>Exemple</p>
+
+<pre class="sh_ruby"><code>class Product &lt; ActiveRecord::Base
+  validates :status, :presence =&gt; true
+end</code></pre>
+
+<p>Si ho provem en una sessi&#xF3; de la consola</p>
+
+<pre class="sh_sh"><code>&gt; p = Product.new
+&gt; p.save
+=&gt; false
+&gt; p.valid?
+=&gt; false
+&gt; p.errors
+=&gt; {:status =&gt; ["can't be blank"]}</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/03_validacions/3">
+<h1>Validacions</h1>
+
+<pre class="sh_ruby"><code>validates :status, :presence =&gt; true
+validates :status, :length =&gt; {:minimum =&gt; 3}
+
+# &#xF3; tamb&#xE9;
+
+validates :status, :presence =&gt; true,
+  :length =&gt; {:minimum =&gt; 3}</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/03_validacions/4">
+<h1>Validacions</h1>
+
+<h2>Opcions de <code>validates</code></h2>
+
+<pre class="sh_ruby"><code>:presence =&gt; true
+:uniqueness =&gt; true
+:numericality =&gt; true
+:length =&gt; { :minimum =&gt; 0, :maximum =&gt; 2000 }
+:format =&gt; { :with =&gt; /.*/ }
+:inclusion =&gt; { :in =&gt; [1,2,3] }
+:exclusion =&gt; { :in =&gt; [1,2,3] }
+:acceptance =&gt; true
+:confirmation =&gt; true</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection smbullets" ref="03_models/03_validacions/5">
+<h1>Validacions</h1>
+
+<h2>Sintaxi alternativa</h2>
+
+<pre class="sh_ruby"><code>validates_presence_of :status
+validates_numericality_of :fingers
+validates_uniqueness_of :toothmarks
+validates_confirmation_of :password
+validates_acceptance_of :zombification
+validates_length_of :password, :minimum =&gt; 3
+validates_format_of :email, :with =&gt; /regex/i
+validates_inclusion_of :age, :in =&gt; 18..99
+validates_exclusion_of :age, :in =&gt; 0...18,
+  :message =&gt; "Has de ser mes gran de 18"</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/03_validacions/6">
+<h1>Validacions</h1>
+
+<h2>Quan s'executen?</h2>
+
+<p>En un model les validacions s'executen <em>sempre</em> que utilitzem qualsevol
+dels seg&#xFC;ents m&#xE8;todes:</p>
+
+<p><code>create,
+create!,
+save,
+save!,
+update,
+update_attributes,
+update_attributes!</code></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/03_validacions/7">
+<h1>Validacions</h1>
+
+<h2>Es poden saltar?</h2>
+
+<p>Els seg&#xFC;ents m&#xE8;todes <strong>no</strong> executen les validacions definides en un model:</p>
+
+<p><code>decrement!,
+decrement_counter,
+increment!,
+increment_counter,
+toggle,
+touch,
+update_all,
+update_attribute,
+update_column,
+update_counters,
+</code></p>
+
+<p>El m&#xE8;tode <code>save</code> tamb&#xE9; accepta un par&#xE0;metre que especifica si s'han d'executar
+les validacions o no</p>
+
+<p><code>save(:validate =&gt; false)</code></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/04_associacions/1">
+<h1>Models</h1>
+
+<h2>Associacions</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/04_associacions/2">
+<h1>Associacions</h1>
+
+<p>En Rails, una associaci&#xF3; &#xE9;s una <em>connexi&#xF3; &#xF3; relaci&#xF3;</em> ente dos models.</p>
+
+<p>Rails soporta sis tipus d'associacions:</p>
+
+<p><code>
+belongs_to,
+has_one,
+has_many,
+has_many :through,
+has_one :through,
+has_and_belongs_to_many,
+</code></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/04_associacions/3">
+<h1><code>belongs_to</code></h1>
+
+<p><img src="file/assets/images/belongs_to.png" alt="belongs_to"/>
+
+<p>Defineix una associaci&#xF3; un-a-un amb un altre model o de pertinen&#xE7;a</p>
+
+<pre class="sh_ruby"><code>class Order  ActiveRecord::Base
+  belongs_to :customer
+end</code></pre>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/04_associacions/4">
+<h1><code>has_one</code></h1>
+
+<p><img src="file/assets/images/has_one.png" alt="has_one"/>
+
+<p>Tamb&#xE9; Defineix una associaci&#xF3; un-a-un amb un altre model per&#xF2; amb diferent
+significat. Cada instancia del model que defineix aquesta associac&#xF3; cont&#xE9; una
+instancia de l'altre.</p>
+
+<pre class="sh_ruby"><code>class Supplier  ActiveRecord::Base
+  has_one :account
+end</code></pre>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/04_associacions/5">
+<h1><code>has_many</code></h1>
+
+<p><img src="file/assets/images/has_many.png" alt="has_many"/>
+
+<p>Defineix una associaci&#xF3; 1-a-N. Normalment en l'altre costat trobarem una
+associaci&#xF3; <code>belongs_to</code>.</p>
+
+<pre class="sh_ruby"><code>class Customer  ActiveRecord::Base
+  has_many :orders
+end</code></pre>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/04_associacions/6">
+<h1><code>has_many :through</code></h1>
+
+<p><img src="file/assets/images/has_many_through.png" alt="has_many_through"/>
+
+<p>Defineix una relaci&#xF3; M-a-N amb un altre model <strong>a trav&#xE9;s</strong> d'un tercer
+model.</p>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/04_associacions/7">
+<h1><code>has_many :through</code></h1>
+
+<p>Defineix una relaci&#xF3; M-a-N amb un altre model <strong>a trav&#xE9;s</strong> d'un tercer</p>
+
+<pre class="sh_ruby"><code>class Physician &lt; ActiveRecord::Base
+  has_many :appointments
+  has_many :patients, :through =&gt; :appointments
+end
+
+class Appointment &lt; ActiveRecord::Base
+  belongs_to :physician
+  belongs_to :patient
+end
+
+class Patient &lt; ActiveRecord::Base
+  has_many :appointments
+  has_many :physicians, :through =&gt; :appointments
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/04_associacions/8">
+<h1><code>has_many :through</code></h1>
+
+<p>Tamb&#xE9; s'utilitza per definir "atajos" a trav&#xE9;s d'associacions <code>has_many</code>
+anidades.</p>
+
+<pre class="sh_ruby"><code>class Document &lt; ActiveRecord::Base
+  has_many :sections
+  has_many :paragraphs, :through =&gt; :sections
+end
+
+class Section &lt; ActiveRecord::Base
+  belongs_to :document
+  has_many :paragraphs
+end
+
+class Paragraph &lt; ActiveRecord::Base
+  belongs_to :section
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/04_associacions/9">
+<h1><code>has_one :through</code></h1>
+
+<p>Defineix una relaci&#xF3; 1-a-1 amb un altre model <strong>a trav&#xE9;s</strong> d'un tercer</p>
+
+<p><img src="file/assets/images/has_one_through.png" alt="has_one_through"/>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/04_associacions/10">
+<h1><code>has_one :through</code></h1>
+
+<p>Defineix una relaci&#xF3; 1-a-1 amb un altre model <strong>a trav&#xE9;s</strong> d'un tercer</p>
+
+<pre class="sh_ruby"><code>class Supplier &lt; ActiveRecord::Base
+  has_one :account
+  has_one :account_history, :through =&gt; :account
+end
+
+class Account &lt; ActiveRecord::Base
+  belongs_to :supplier
+  has_one :account_history
+end
+
+class AccountHistory &lt; ActiveRecord::Base
+  belongs_to :account
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="03_models/04_associacions/11">
+<h3><code>has_and_belongs_to_many</code></h3>
+
+<p>Defineix una relaci&#xF3; M-a-N entre <em>2 models</em></p>
+
+<p><img src="file/assets/images/has_and_belongs_to_many.png" alt="has_and_belongs_to_many"/>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="03_models/04_associacions/12">
+<h3><code>has_and_belongs_to_many</code></h3>
+
+<p>Defineix una relaci&#xF3; M-a-N entre <em>2 models</em></p>
+
+<pre class="sh_ruby"><code>class Assembly &lt; ActiveRecord::Base
+  has_and_belongs_to_many :parts
+end
+
+class Part &lt; ActiveRecord::Base
+  has_and_belongs_to_many :assemblies
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="03_models/04_associacions/13">
+<h3><code>has_and_belongs_to_many</code></h3>
+
+<p>Ens hem d'enrecordar de crear la taula de "JOIN"</p>
+
+<pre class="sh_ruby"><code>class CreateAssemblyPartJoinTable &lt; ActiveRecord::Migration
+  def change
+    create_table :assemblies_parts, :id =&gt; false do |t|
+      t.integer :assembly_id
+      t.integer :part_id
+    end
+  end
+end</code></pre>
+
+<p>S'hauria de crear sense clau primaria</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="03_models/04_associacions/14">
+<h1>Triar entre BT i HO?</h1>
+
+<ul>
+<li><p>Per decidir si apliquem una relaci&#xF3; 1-1 amb has<em>one o belongs</em>to hem de pensar
+<strong>on va la clau for&#xE0;nea</strong>.</p></li>
+<li><p>On col.loquem la FK: <code>belongs_to</code></p></li>
+<li><p>Forma part del disseny de la BD i del cas d'&#xFA;s concret</p></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/04_associacions/15">
+<h1>Triar entre BT i HO?</h1>
+
+<pre class="sh_ruby"><code>class Supplier &lt; ActiveRecord::Base
+  has_one :account
+end
+
+class Account &lt; ActiveRecord::Base
+  belongs_to :supplier
+end</code></pre>
+
+<p>T&#xE9; m&#xE9;s <em>sentit</em> que un proveidor tingui in compte on compte associat i no
+a l'inrev&#xE9;s.</p>
+
+<p><strong>Tinen&#xE7;a vs Pertinen&#xE7;a</strong></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/04_associacions/16">
+<h1>Triar entre BT i HO?</h1>
+
+<p>La migraci&#xF3; anterior seria com la seg&#xFC;ent</p>
+
+<pre class="sh_ruby"><code>class CreateSuppliers &lt; ActiveRecord::Migration
+  def change
+    create_table :suppliers do |t|
+      t.string  :name
+      t.timestamps
+    end
+
+    create_table :accounts do |t|
+      t.integer :supplier_id
+      t.string  :account_number
+      t.timestamps
+    end
+  end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="03_models/04_associacions/17">
+<h1>Triar entre HM :through i HBTM?</h1>
+
+<ul>
+<li>Utilitzar <code>has_many :through</code> si necessitem treballar amb el model intermig o
+realitzar-li validacions, etc.</li>
+<li>En qualsevol altre cas podem utilitzar <code>has_and_belongs_to_many</code></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/04_associacions/18">
+<h1>Associacions polim&#xF2;rfiques</h1>
+
+<p>Amb les associons polim&#xF2;rfiques un model pot pertanyer a m&#xE9;s d'un altre
+model utilitzan una &#xFA;nica associac&#xF3;</p>
+
+<pre class="sh_ruby"><code>class Picture &lt; ActiveRecord::Base
+  belongs_to :imageable, :polymorphic =&gt; true
+end
+
+class Employee &lt; ActiveRecord::Base
+  has_many :pictures, :as =&gt; :imageable
+end
+
+class Product &lt; ActiveRecord::Base
+  has_many :pictures, :as =&gt; :imageable
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/04_associacions/19">
+<h1>Associacions polim&#xF2;rfiques</h1>
+
+<p>Especificar-la a la migraci&#xF3;</p>
+
+<pre class="sh_ruby"><code>class CreatePictures &lt; ActiveRecord::Migration
+  def change
+    create_table :pictures do |t|
+      t.string :name
+      t.references :imageable, :polymorphic =&gt; true
+      t.timestamps
+    end
+  end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/04_associacions/20">
+<h1>Associacions polim&#xF2;rfiques</h1>
+
+<p>Especificar-la a la migraci&#xF3; (alternativa)</p>
+
+<pre class="sh_ruby"><code>class CreatePictures &lt; ActiveRecord::Migration
+  def change
+    create_table :pictures do |t|
+      t.string  :name
+      t.integer :imageable_id
+      t.string  :imageable_type
+      t.timestamps
+    end
+  end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/04_associacions/21">
+<h1>Associacions polim&#xF2;rfiques</h1>
+
+<p><img src="file/assets/images/polymorphic.png" alt="polymorphic"/>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/04_associacions/22">
+<h1>Associacions auto-referencials</h1>
+
+<p>En el moment de dissenyar un model ens podem trobar sovint amb la necessitat
+que aquest tingui una relaci&#xF3; amb <strong>si mateix</strong>.</p>
+
+<p>Per exemple:</p>
+
+<pre class="sh_ruby"><code>class Empleat &lt; ActiveRecord::Base
+  has_many :subordinats, :class_name =&gt; "Empleat"
+  belongs_to :coordinador, :class_name =&gt; "Empleat",
+    :foreign_key =&gt; "coordinador_id"
+end
+
+# Cada empleat pot tenir de 0-N subordinats i pertany
+# a 0 o 1 coordinador</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/05_crud/1">
+<h1>Models</h1>
+
+<h2>CRUD</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/05_crud/2">
+<h1>Models</h1>
+
+<h2>CRUD</h2>
+
+<h3><font color="green"><strong>C</strong></font>reate</h3>
+
+<h3><font color="blue"><strong>R</strong></font>ead</h3>
+
+<h3><font color="yellow"><strong>U</strong></font>pdate</h3>
+
+<h3><font color="red"><strong>D</strong></font>elete</h3>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/05_crud/3">
+<h1><font color="green">C</font>reate</h1>
+
+<p>M&#xE8;todes per a instanciar i/o crear models</p>
+
+<pre class="sh_ruby"><code>new(atributs)       # instancia un nou model
+create(atributs)   # instancia i crea
+create!(atribts)   # " + excepci&#xF3; si error</code></pre>
+
+<p>Exemple</p>
+
+<pre class="sh_ruby"><code>p = Persona.new(:nom =&gt; "Estanis")
+p.save</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/05_crud/4">
+<h1><font color="blue">R</font>ead</h1>
+
+<p>M&#xE8;todes per a llegir objectes (consultes a continuaci&#xF3;)</p>
+
+<pre class="sh_ruby"><code>find(id)      # tamb&#xE9; amb un array de ids
+exists?       # existeix?
+new_record?   # nou?
+first         # el primer
+last          # l'&#xFA;ltim</code></pre>
+
+<p>Exemple</p>
+
+<pre class="sh_ruby"><code>Categories.find(1)
+Categories.find([2,3,4,5])
+Categories.last</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/05_crud/5">
+<h1><font color="yellow">U</font>pdate</h1>
+
+<p>Actualitzaci&#xF3; <em>directa</em> d'atributs d'un o m&#xE9;s models</p>
+
+<pre class="sh_ruby"><code>update(ids, actualitzacions)  # poden ser arrays
+update_all(actualitzacions)</code></pre>
+
+<p>Exemple</p>
+
+<pre class="sh_ruby"><code># actualitza un &#xFA;nic registre
+Empleat.update(15, :salari =&gt; 3000,
+  :categoria =&gt; 'Enginyer')
+
+# diversos registres alhora
+empleats = { 1 =&gt; {"Nom" =&gt; "Estanis"},
+  2 =&gt; {"Nom" =&gt; "Jaume"} }
+Empleat.update(empleats.keys, empleats.values)</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/05_crud/6">
+<h1><font color="red">D</font>elete</h1>
+
+<p>Com eliminem registres?</p>
+
+<p>Sense instanciar els models corresponents i, per tant, sense executar validacions
+ni "callbacks" ni cap l&#xF2;gica associada a les relacions que puguin existir.
+    @@@ ruby
+    delete(id)      # tamb&#xE9; amb array
+    delete_all</p>
+
+<p>Instanciant els models abans d'eliminar-los i executant tota la l&#xF2;gica
+definida
+    @@@ ruby
+    destroy(id)     # tamb&#xE9; amb array
+    destroy_all</p>
+
+<p><code>delete</code> &#xE9;s m&#xE9;s eficient per&#xF2; s'ha d'anar amb compte</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/06_queries/1">
+<h1>Models</h1>
+
+<h2>Consultes</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="03_models/06_queries/2">
+<h1>Consultes</h1>
+
+<ul>
+<li><p>El m&#xF2;dul ActiveRecord de Rails ens evitar&#xE0;, en la majoria de casos, tenir
+que utilizar sent&#xE8;ncies SQL per a extreure informaci&#xF3; de la BD.</p></li>
+<li><p>Tots els m&#xE8;todes de consulta de Rails &gt;= 3 executen la sent&#xE8;ncia SQL corresponent
+<strong>nom&#xE9;s</strong> quan s'accedeix a la col.lecci&#xF3; que retornen ("lazy loading").</p></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="03_models/06_queries/3">
+<h1>Consultes</h1>
+
+<h2>M&#xE8;todes</h2>
+
+<p>Els m&#xE8;todes de consulta en rails s&#xF3;n els seg&#xFC;ents:</p>
+
+<p><code>
+where,
+order,
+select,
+limit,
+offset,
+group,
+having,
+joins
+</code></p>
+
+<p>Tots aquests m&#xE8;todes retornen una inst&#xE0;ncia d'<code>ActiveRecord::Relation</code>.</p>
+
+<p>A m&#xE9;s, tots aquests m&#xE8;todes s&#xF3;n encadenables.</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/06_queries/4">
+<h1>Consultes</h1>
+
+<h2>M&#xE8;todes</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/06_queries/5">
+<h1><code>where</code></h1>
+
+<pre class="sh_ruby"><code>Client.where("comandes = ?", params[:comandes])
+
+Client.where("comandes = ? AND pendent = ?",
+  params[:comandes], false)
+
+Client.where("created_at &gt;= :start_date",
+  {:start_date =&gt; data_inici})</code></pre>
+
+<p>Es reempla&#xE7;aran els interrogantss pels valors de les variables proporcionades.</p>
+
+<p>En l'&#xFA;ltim exemple es reemplacen per nom amb els valors del hash que identifica
+la clau amb el nom coincident.</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/06_queries/6">
+<h1><code>where</code></h1>
+
+<p>En comptes de passar-hi un <code>String</code> podem passar un <code>Hash</code></p>
+
+<pre class="sh_ruby"><code>Client.where(:actiu =&gt; true)
+
+Client.where(:created_at =&gt;
+  (Time.now.midnight - 1.day)..Time.now.midnight)
+
+Client.where(:no_comandes =&gt; [1,3,5])</code></pre>
+
+<p>Nom&#xE9;s soporta condicions d'igualtat, rang i subconjunt</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/06_queries/7">
+<h1><code>order</code></h1>
+
+<p>Ordenar els resultats</p>
+
+<pre class="sh_ruby"><code>Client.order("created_at")
+
+# podem especificar ASC o DESC
+Client.order("created_at ASC")
+Client.order("created_at DESC")
+
+# i m&#xE9;s d'un camp
+Client.order("comandes_pendents ASC, created_at DESC")</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/06_queries/8">
+<h1><code>select</code></h1>
+
+<p>Limitar els camps que retorna una consulta que per defecte s'executa
+amb <code>SELECT *</code></p>
+
+<pre class="sh_ruby"><code>Client.select("nom, empresa, actiu")
+
+# La sentencia SQL:
+# SELECT nom, empresa, actiu FROM clients</code></pre>
+
+<p>Si s'utilitza <code>select</code> el resultat es de nom&#xE9;s lectura (no es pot guardar
+les modificacions ni esborrar).</p>
+
+<p>S'ha d'anar en compte doncs nom&#xE9;s emplenar&#xE0; els atributs del model
+que seleccionem.</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/06_queries/9">
+<h1><code>limit</code> / <code>offset</code></h1>
+
+<p>Es pot utilitzar <code>limit</code> per especificar el nombre de registres que es retornen
+i <code>offset</code> per saltar-ne una quantitat desde l'inici.</p>
+
+<pre class="sh_ruby"><code>Client.limit(5)
+# SQL: SELECT * FROM clients LIMIT 5
+
+Client.limit(5).offset(30)
+# SQL: SELECT * FROM clients LIMIT 5 OFFSET 30</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/06_queries/10">
+<h1><code>group</code></h1>
+
+<p>Especificar una clausula <code>GROUP BY</code></p>
+
+<pre class="sh_ruby small"><code>Comanda.select("created_at as data_creacio, sum(import) as import_total").group("created_at")
+
+# SQL
+# SELECT created_at as data_creacio, sum(import) as import_total
+# FROM comandes
+# GROUP BY created_at</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/06_queries/11">
+<h1><code>having</code></h1>
+
+<p>Clausula <code>HAVING</code></p>
+
+<pre class="sh_ruby small"><code>Comanda.select("created_at as data_creacio, sum(import) as import_total").group("created_at")
+.having("sum(import) &gt; ?", 100)
+
+# SQL:
+# SELECT created_at as data_creacio, sum(import) as import_total
+# FROM comandes
+# GROUP BY created_at
+# HAVING sum(import) &gt; 100</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/06_queries/12">
+<h1><code>joins</code></h1>
+
+<p><code>joins</code> ens permet especificar clausules <code>JOIN</code> en la consulta resultant.</p>
+
+<pre class="sh_ruby small"><code>Client.joins('LEFT JOIN adreces on adreces.client_id = clients.id')
+
+# Produeix en SQL:
+# SELECT clients.*
+# FROM clients
+# LEFT JOIN adreces ON adreces.client_id = clients.id</code></pre>
+
+<p>Tamb&#xE9; podem utilitzar un Array/Hash d'associacions ja definides</p>
+
+<p><strong>Nom&#xE9;s</strong> ens permet crear clausules <code>INNER JOIN</code></p>
+
+<pre class="sh_ruby small"><code>Categoria.joins(:articles)
+
+# SELECT categories.* FROM categories
+# INNER JOIN articles ON articles.categoria_id = categories.id</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/06_queries/13">
+<h1><code>joins</code></h1>
+
+<p>Considerem el seg&#xFC;ent exemple amb els models <code>Categoria</code>, <code>Article</code>,
+  <code>Comentari</code>, <code>Usuari</code> i <code>Tag</code></p>
+
+<pre class="sh_ruby small"><code>class Categoria &lt; ActiveRecord::Base
+  has_many :articles
+end
+
+class Article &lt; ActiveRecord::Base
+  belongs_to :categoria
+  has_many :comentaris
+  has_many :tags
+end
+
+class Comentari &lt; ActiveRecord::Base
+  belongs_to :article
+  has_one :usuari
+end
+
+class Usuari &lt; ActiveRecord::Base
+  belongs_to :comentari
+end
+
+class Tag &lt; ActiveRecord::Base
+  belongs_to :article
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/06_queries/14">
+<h1><code>joins</code></h1>
+
+<h3>Join simple</h3>
+
+<pre class="sh_ruby"><code>Categoria.joins(:articles)</code></pre>
+
+<p>Produeix</p>
+
+<pre class="sh_sql"><code>SELECT categories.* FROM categories
+INNER JOIN articles
+  ON articles.categoria_id = categories.id</code></pre>
+
+<p><em>Retorna'm les categories que tinguin articles</em></p>
+
+<p>Nota: Retornar&#xE0; duplicats si hi ha m&#xE9;s d'un article en la mateixa categoria, podem
+evitar-ho: <code>Categoria.joins(:articles).select("distinct(categories.id)")</code></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/06_queries/15">
+<h1><code>joins</code></h1>
+
+<h3>Join m&#xFA;ltiple</h3>
+
+<pre class="sh_ruby"><code>Article.joins(:categoria, :comentaris)</code></pre>
+
+<p>Produeix</p>
+
+<pre class="sh_sql"><code>SELECT articles.* FROM articles
+INNER JOIN categories
+  ON articles.categoria_id = categories.id
+INNER JOIN comentaris
+  ON comentaris.article_id = article.id</code></pre>
+
+<p><em>Retorna'm els articles que estan categoritzats i tenen almenys 1 comentari</em></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/06_queries/16">
+<h1><code>joins</code></h1>
+
+<h3>Join anidat (nivell 1)</h3>
+
+<pre class="sh_ruby"><code>Article.joins(:comentaris =&gt; :usuaris)</code></pre>
+
+<p>Produeix</p>
+
+<pre class="sh_sql"><code>SELECT articles.* FROM articles
+INNER JOIN comentaris
+  ON comentaris.article_id = articles.id
+INNER JOIN usuaris
+  ON usuaris.comentari_id = comentaris.id</code></pre>
+
+<p><em>Retorna'm els articles comentats per un usuari registrat</em></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/06_queries/17">
+<h1><code>joins</code></h1>
+
+<h3>Join anidat (m&#xFA;ltiples nivells)</h3>
+
+<pre class="sh_ruby"><code>Categoria.joins(
+    :articles =&gt; [{:comentaris =&gt; :usuari}, :tags]
+)</code></pre>
+
+<p>Produeix</p>
+
+<pre class="sh_sql small"><code>SELECT categories.* FROM categories
+INNER JOIN articles
+  ON articles.categoria_id = categories.id
+INNER JOIN comentaris
+  ON comentaris.article_id = articles.id
+INNER JOIN usuaris
+  ON usuaris.comentari_id = comentaris.id
+INNER JOIN tags
+  ON tags.article_id = articles.id</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/06_queries/18">
+<h1><code>joins</code></h1>
+
+<p>Podem especificar opcions en clausules <code>join</code> encadenant el m&#xE8;tode
+<code>where</code></p>
+
+<pre class="sh_ruby"><code>ahir = Time.now.midnight - 1.day
+Client.joins(:comandes).where('orders.created_at &gt;= ?',
+  ahir)</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/06_queries/19">
+<h1>El problema de les N+1 consultes</h1>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/06_queries/20">
+<h1>N+1 consultes</h1>
+
+<p>Considerem el seguent exemple que ens busca 10 clients i imprimeix
+el seu codi postal</p>
+
+<pre class="sh_ruby"><code>clients = Client.limit(10)
+
+clients.each do |client|
+  puts client.dades_enviament.cp
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="03_models/06_queries/21">
+<h1>N+1 consultes</h1>
+
+<ul>
+<li>El codi anterior es correcte per&#xF2; in&#xF2;ptim.</li>
+<li>Executa 1 consulta (per trobar els 10 clients) i despr&#xE9;s 10 (per carregar
+el model <code>dades_enviament</code> i extreure'n el codi postal)</li>
+<li><font color="red"><strong>11</strong></font> consultes!</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="03_models/06_queries/22">
+<h1>N+1 consultes</h1>
+
+<h2>Sol.luci&#xF3;</h2>
+
+<ul>
+<li>Utilitzar el m&#xE8;tode <code>includes</code></li>
+<li><code>includes</code> permet a Rails con&#xE8;ixer quines associacions ha de carregar i
+utilitzar el m&#xED;nim nombre de consultes possible</li>
+<li>"Eager loading" &#xF3; pre-c&#xE0;rrega</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="03_models/06_queries/23">
+<h1>N+1 consultes</h1>
+
+<p>Reescrivint el exemple anterior</p>
+
+<pre class="sh_ruby"><code>clients = Client.includes(:dades_enviament).limit(10)
+
+clients.each do |client|
+  puts client.dades_enviament.cp
+end</code></pre>
+
+<ul>
+<li><p>Executa 1 consulta (per trobar els 10 clients) i 1 altra consulta
+per a trobar totes les adreces.</p></li>
+<li><p><font color="green"><strong>2</strong></font> consultes</p></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/06_queries/24">
+<h1>N+1 consultes</h1>
+
+<p>En rails</p>
+
+<pre class="sh_ruby"><code>clients = Client.includes(:dades_enviament).limit(10)
+
+clients.each do |client|
+  puts client.dades_enviament.cp
+end</code></pre>
+
+<p>En SQL</p>
+
+<pre class="sh_sql"><code>SELECT * FROM clients LIMIT 10
+SELECT dades_enviament.*
+FROM dades_enviament
+WHERE (dades_enviament.client_id IN (1,2,3,4,5,6,7,8,9,10))</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/06_queries/25">
+<h1>Consultes</h1>
+
+<h2>SQL</h2>
+
+<p>Si volem utilitzar al nostra pr&#xF2;pia consulta SQL podem utilitzar el m&#xE8;tode
+<code>find_by_sql</code>.</p>
+
+<pre class="sh_ruby"><code>Client.find_by_sql("SELECT * FROM clients
+    INNER JOIN comandes ON clients.id = comandes.client_id
+    ORDER clients.created_at desc")</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/07_scopes/1">
+<h1>Models</h1>
+
+<h2>(Named) Scopes</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="03_models/07_scopes/2">
+<h1>Scopes</h1>
+
+<ul>
+<li><p>Rails ens permet definir consultes "comuns" o que tenim previst utilitzar
+frequentment i referenciarles com una crida a un m&#xE8;tode d'un model o associaci&#xF3;.</p></li>
+<li><p>Un "scope" pot utilitzar qualsevol dels m&#xE8;todes de consulta vistos fins
+ara i encadenar-los.</p></li>
+<li><p>Retornen un objecte <code>ActiveRecord::Relation</code> que ens permetr&#xE0; cridar
+a altres m&#xE8;todes de consulta o altres "scopes"</p></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/07_scopes/3">
+<h1>Scopes</h1>
+
+<p>Definim un "scope" senzill</p>
+
+<pre class="sh_ruby"><code>class Article &lt; ActiveRecord::Base
+  belongs_to :categoria
+
+  scope :publicat, where(:publicat =&gt; true)
+end</code></pre>
+
+<p>Llavors podem:</p>
+
+<pre class="sh_sh"><code>&gt; Article.publicat # =&gt; articles publicats
+&gt; categoria = Categoria.first
+&gt; categoria.articles.publicat # =&gt; articles publicats</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/07_scopes/4">
+<h1>Scopes</h1>
+
+<h2>Treballar amb dates</h2>
+
+<p>Degut a com s'evaluen les dates necessitem utilitzar una funci&#xF3; <code>lambda</code></p>
+
+<pre class="sh_ruby small"><code>class Article &lt; ActiveRecord::Base
+  scope :ultima_setmana, lambda { where("created_at &lt; ?", Time.zone.now) }
+end</code></pre>
+
+<p>Sense la funci&#xF3; <code>lambda</code>, <code>Time.zone.now</code> nom&#xE9;s es cridaria un cop (el primer) i
+necessitem que s'evalui cada vegada.</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/07_scopes/5">
+<h1>Scopes</h1>
+
+<h2><code>default_scope</code></h2>
+
+<p>Si desitjem que un "scope" s'apliqui a totes les consultes d'un model,
+podem utilitzar el m&#xE8;tode <code>default_scope</code> desde el model.</p>
+
+<pre class="sh_ruby"><code>class Client &lt; ActiveRecord::Base
+  default_scope where("data_baixa IS NULL")
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/07_scopes/6">
+<h1>Scopes</h1>
+
+<h2>M&#xE8;todes est&#xE0;tics</h2>
+
+<p>Podem pensar en els "scopes" com a m&#xE8;todes est&#xE0;tics del model en el que
+es declaren, per tant podem definir-los tamb&#xE9; de la seg&#xFC;ent manera:</p>
+
+<pre class="sh_ruby"><code>class Article &lt; ActiveRecord::Base
+  class &lt;&lt; self
+    def ultima_setmana
+      where("created_at &lt; ?", Time.zone.now)
+    end
+  end
+end
+
+&gt; Article.ultima_setmana</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/08_calculs/1">
+<h1>Models</h1>
+
+<h2>C&#xE0;lculs</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="03_models/08_calculs/2">
+<h1>C&#xE0;lculs</h1>
+
+<ul>
+<li><code>ActiveRecord</code> ens proporciona algunes funcions senzilles per a realitzar
+c&#xE0;lculs en les col.leccions que ens retorna.</li>
+<li>Les funcions principals de c&#xE0;lcul s&#xF3;n: <code>count, average, minimum, maximum,
+i sum</code>.</li>
+<li>Retornen un valor segons el tipus de dades de la columna en la que treballen
+o <code>nil</code> si no hi ha resultats.</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/08_calculs/3">
+<h1>C&#xE0;lculs</h1>
+
+<p>Tots els m&#xE8;todes de c&#xE0;lcul treballen directament en el model:</p>
+
+<pre class="sh_ruby"><code>Client.count
+# SELECT count(*) AS count_all FROM clients</code></pre>
+
+<p>&#xF3; sobre una relaci&#xF3;:</p>
+
+<pre class="sh_ruby"><code>Client.where(:primer_cognom =&gt; "Trepat").count</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/08_calculs/4">
+<h1>C&#xE0;lculs</h1>
+
+<h2>Exemples</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/08_calculs/5">
+<h1><code>count</code></h1>
+
+<p>Compta el n&#xBA; de registres retornats.</p>
+
+<pre class="sh_ruby"><code>Client.includes("comandes")
+.where(:primer_cognom =&gt; 'Trepat',
+  :comandes =&gt; {:estat =&gt; 'pendent'}).count</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/08_calculs/6">
+<h1><code>average</code></h1>
+
+<p>Executa una mitja aritm&#xE8;tica: suma(N) / N</p>
+
+<pre class="sh_ruby"><code>Comandes.average("import_total")</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/08_calculs/7">
+<h1><code>minimum</code></h1>
+
+<p>Retorna el registre amb el <strong>m&#xED;nim</strong> valor del camp especificat.</p>
+
+<pre class="sh_ruby"><code>Client.minimum("edat")</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/08_calculs/8">
+<h1><code>maximum</code></h1>
+
+<p>Retorna el registre amb el <strong>m&#xE0;xim</strong> valor del camp especificat.</p>
+
+<pre class="sh_ruby"><code>Client.maximum("edat")</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="03_models/08_calculs/9">
+<h1><code>sum</code></h1>
+
+<p>Retorna la suma dels valors de la columna especificada.</p>
+
+<pre class="sh_ruby"><code>Client.where(:primer_cognom =&gt; "Trepat")
+.sum("no_comandes")</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="04_controladors_1/01_MVC/1">
+<p><img src="file/assets/images/rails.png" alt="Rails logo"/>
+
+<h1>Rails desde Zero</h1>
+
+<h2>MVC</h2>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="04_controladors_1/01_MVC/2">
+<h1>MVC en Rails</h1>
+
+<p><img src="file/assets/images/rails_mvc.png" alt="Rails MVC"/>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="04_controladors_1/01_MVC/3">
+<h1>MVC en Rails</h1>
+
+<h2>Controladors (Part 1)</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="04_controladors_1/01_MVC/4">
+<h1>Controladors</h1>
+
+<h3>Els controladors <em>"conecten"</em> els models i les vistes</h3>
+
+<ul>
+<li>Una petici&#xF3; arriba al controlador</li>
+<li>El controlador obt&#xE9; dades del model</li>
+<li>Finalment, renderitza la vista corresponent</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="04_controladors_1/02_REST/1">
+<h1>REST</h1>
+
+<h3>Representational State Transfer</h3>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="04_controladors_1/02_REST/2">
+<h1>REST</h1>
+
+<ul>
+<li>Arquitectura de software client-servidor</li>
+<li>Tracta de la representaci&#xF3; dels <strong>recursos</strong></li>
+<li>Clients inicien les peticions als servidors</li>
+<li>Els servidors processen peticions y retornen respostes</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="04_controladors_1/02_REST/3">
+<h1>REST</h1>
+
+<h3>Recordem CRUD?</h3>
+
+<ul>
+<li><font color="green"><strong>C</strong></font>reate</li>
+<li><font color="blue"><strong>R</strong></font>ead</li>
+<li><font color="yellow"><strong>U</strong></font>pdate</li>
+<li><font color="red"><strong>D</strong></font>elete</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="04_controladors_1/02_REST/4">
+<h1>REST</h1>
+
+<h3>Verbs HTTP corresponents:</h3>
+
+<ul>
+<li><font color="green"><strong>C</strong></font>reate =&gt; <strong>POST</strong></li>
+<li><font color="blue"><strong>R</strong></font>ead =&gt; <strong>GET</strong></li>
+<li><font color="yellow"><strong>U</strong></font>pdate =&gt; <strong>PUT</strong></li>
+<li><font color="red"><strong>D</strong></font>elete =&gt; <strong>DELETE</strong></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="04_controladors_1/03_Routing/1">
+<h1>Routing</h1>
+
+<h2>Conectant URL's al codi</h2>
+
+<h3>(Introducci&#xF3;)</h3>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="04_controladors_1/03_Routing/2">
+<h1>Routing</h1>
+
+<p>Quan una aplicaci&#xF3; Rails rep una petici&#xF3; com la seg&#xFC;ent:</p>
+
+<pre class="sh_sh"><code>GET /patients/17</code></pre>
+
+<p>Demana al "router" que ho enllaci amb una acci&#xF3; d'un controlador. Si la
+primera que coincideix &#xE9;s:</p>
+
+<pre class="sh_ruby"><code>match "/patients/:id" =&gt; "patients#show"</code></pre>
+
+<p>Aquesta petici&#xF3; es dirigeix a l'acci&#xF3; <code>show</code> del controlador <code>patients</code> amb
+els par&#xE0;metres: <code>{:id =&gt; "17"}</code></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="04_controladors_1/03_Routing/3">
+<h1>Routing</h1>
+
+<h3>Rutes de recurs</h3>
+
+<p>Una ruta de <em>recurs</em> direcciona un nombre de peticions predefinit a
+accions en un controlador</p>
+
+<p><code>config/routes.rb</code></p>
+
+<pre class="sh_ruby"><code>Sample::Application.routes.draw do
+  resources :articles
+  # Ens crea les rutes corresponents
+  # a les accions:
+  # index, create, new, edit,
+  # update, destroy
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="04_controladors_1/03_Routing/4">
+<h1>Routing</h1>
+
+<h2>Comprobant rutes</h2>
+
+<h3><code>rake routes</code></h3>
+
+<pre class="sh_sh small"><code>$ rake routes
+    articles GET    /articles(.:format)          {:action =&gt; "index", :controller =&gt; ...}
+             POST   /articles(.:format)          {:action =&gt; "create", :controller =&gt; ...}
+ new_article GET    /articles/new(.:format)      {:action =&gt; "new", :controller =&gt; ...}
+edit_article GET    /articles/:id/edit(.:format) {:action =&gt; "edit", :controller =&gt; ...}
+     article GET    /articles/:id(.:format)      {:action =&gt; "show", :controller =&gt; ...}
+             PUT    /articles/:id(.:format)      {:action =&gt; "update", :controller =&gt; ...}
+             DELETE /articles/:id(.:format)      {:action =&gt; "destroy", :controller =&gt; ...}</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="04_controladors_1/03_Routing/5">
+<h1>Routing</h1>
+
+<h3>Recursos anidats</h3>
+
+<p>&#xDA;til si un recurs pertany a un altre, per exemple en models que est&#xE0;n relacionats
+1-N amb <code>has_many</code> i <code>belongs_to</code>.</p>
+
+<p>Exemple:</p>
+
+<pre class="sh_ruby"><code># config/routes.rb
+resources :articles do
+  resources :comentaris
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="04_controladors_1/03_Routing/6">
+<h1>Routing</h1>
+
+<h3>Restringint recursos</h3>
+
+<p>Podem registrir les accions associades a un recurs amb <code>only</code> i <code>except</code>.</p>
+
+<p>Exemple:</p>
+
+<pre class="sh_ruby"><code># config/routes.rb
+resources :articles, :except =&gt; :show do
+  resources :comentaris, :only =&gt; :create
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="04_controladors_1/03_Routing/7">
+<h1>Routing</h1>
+
+<h3>M&#xE8;todes d'ajuda</h3>
+
+<p>Al definir una ruta de recurs, autom&#xE0;ticament tindrem accessibles desde
+l'aplicaci&#xF3; tot un seguit de m&#xE8;todes d'ajuda per a referenciar-les i
+utilitzar-les.</p>
+
+<p>S&#xF3;n de la forma: <code>(nom_recurs)_path</code> i <code>(nom_recurs)_url</code></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="04_controladors_1/03_Routing/8">
+<h1>Routing</h1>
+
+<h3>M&#xE8;todes d'ajuda</h3>
+
+<p>Utilitzant l'exemple anterior:</p>
+
+<pre class="sh_ruby"><code># config/routes.rb
+Sample::Application.routes.draw do
+  resources :articles
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="04_controladors_1/03_Routing/9">
+<h1>Routing</h1>
+
+<h3>M&#xE8;todes d'ajuda</h3>
+
+<p>Ens generaria els m&#xE8;todes d'ajuda seg&#xFC;ents:</p>
+
+<pre class="sh_ruby"><code>articles_path           articles_url
+new_article_path        new_article_url
+edit_article_path(id)   edit_article_url(id)
+article_path(id)        post_url(id)</code></pre>
+
+<p>La diferencia entre els m&#xE8;todes <code>_path</code> i els <code>_url</code> &#xE9;s que l'&#xFA;ltim
+retorna el path prefixat amb el host/port.</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="04_controladors_1/03_Routing/10">
+<h1>Routing</h1>
+
+<h3>Rutes pr&#xF2;pies</h3>
+
+<p>En Rails podem definir rutes pr&#xF2;pies en comptes d'utilitzar les generades
+per un recurs ("Non-Resourceful routes").</p>
+
+<p>Exemples:</p>
+
+<pre class="sh_ruby"><code>match 'photos/:id' =&gt; 'photos#show'
+# /photos/12 =&gt; PhotosController.show
+match 'login' =&gt; 'user_sessions#new'
+# /login =&gt; UserSessionsController.new
+match 'logout' =&gt; 'user_sessions#destroy'
+# /logout =&gt; UserSessionsController.destroy</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="04_controladors_1/03_Routing/11">
+<h1>Routing</h1>
+
+<h3>Rutes pr&#xF2;pies (amb nom)</h3>
+
+<p>Tamb&#xE9; podem assignar noms o identificadors a les rutes per a refer&#xE8;nciar-les
+per mitj&#xE0; de m&#xE8;todes d'ajuda en l'aplicaci&#xF3;.</p>
+
+<pre class="sh_ruby"><code>match 'login' =&gt; 'user_sessions#new', :as =&gt; :signin</code></pre>
+
+<p>L'anterior ens crear&#xE0; els m&#xE8;todes d'ajuda: <code>signing_path</code> i <code>signin_url</code>. Per
+exemple, cridar <code>signin_path</code> ens retornaria <code>"/login"</code>.</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="04_controladors_1/03_Routing/12">
+<h1>Routing</h1>
+
+<h3>La ruta "arrel" (root route)</h3>
+
+<ul>
+<li>La ruta "arrel" defineix l'arrel de l'aplicaci&#xF3; o plana web.</li>
+<li>S'ha d'eliminar l'arxiu: <code>public/index.html</code>.</li>
+<li>S'estableix dins de <code>config/routes.rb</code> amb la sintaxi:
+<code>root :to =&gt; "articles#index"</code>.</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="04_controladors_1/04_accions_restful/1">
+<h1>Accions per defecte</h1>
+
+<h3>"Convention Over Configuration"</h3>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection incremental" ref="04_controladors_1/04_accions_restful/2">
+<h1>M&#xE8;todes RESTful</h1>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection smaller incremental" ref="04_controladors_1/04_accions_restful/3">
+<h1>M&#xE8;todes RESTful</h1>
+
+<ul>
+<li>index</li>
+<li>show</li>
+<li>new</li>
+<li>edit</li>
+<li>create</li>
+<li>update</li>
+<li>destroy</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection smaller" ref="04_controladors_1/04_accions_restful/4">
+<h1>M&#xE8;todes RESTful</h1>
+
+<ul>
+<li>index <em>(Llista tots els registres)</em></li>
+<li>show <em>(Ensenya un registre)</em></li>
+<li>new <em>(Nou registre)</em></li>
+<li>edit <em>(Editar registre)</em></li>
+<li>create <em>(Crear registre (guardar))</em></li>
+<li>update <em>(Actualitzar registre (guardar))</em></li>
+<li>destroy <em>(Eliminar un registre)</em></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection smaller" ref="04_controladors_1/04_accions_restful/5">
+<h1>M&#xE8;todes RESTful</h1>
+
+<ul>
+<li>index <em>(Llista tots els registres)</em> --&gt; <font color="green">GET</font></li>
+<li>show <em>(Ensenya un registre)</em> --&gt; <font color="green">GET</font></li>
+<li>new <em>(Nou registre)</em> --&gt; <font color="green">GET</font></li>
+<li>edit <em>(Editar registre)</em> --&gt; <font color="green">GET</font></li>
+<li>create <em>(Crear registre (guardar))</em> --&gt; <font color="yellow">POST</font></li>
+<li>update <em>(Actualitzar registre (guardar))</em> --&gt; <font color="green">PUT</font></li>
+<li>destroy <em>(Eliminar un registre)</em> --&gt; <font color="red">DELETE</font></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="04_controladors_1/04_accions_restful/6">
+<h1>M&#xE8;todes RESTful</h1>
+
+<h2><code>index</code></h2>
+
+<pre class="sh_ruby"><code>def index
+  @articles = Articles.all
+
+  respond_to do |format|
+    format.html # index.html.erb
+    format.xml { render :xml =&gt; @articles }
+  end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="04_controladors_1/04_accions_restful/7">
+<h1>M&#xE8;todes RESTful</h1>
+
+<h2><code>show</code></h2>
+
+<pre class="sh_ruby"><code>def show
+  @article = Article.find(params[:id])
+
+  respond_to do |format|
+    format.html # show.html.erb
+    format.xml { render :xml =&gt; @article }
+  end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="04_controladors_1/04_accions_restful/8">
+<h1>M&#xE8;todes RESTful</h1>
+
+<h2><code>new</code></h2>
+
+<pre class="sh_ruby"><code>def new
+  @article = Article.new
+
+  respond_to do |format|
+    format.html # new.html.erb
+    format.xml { render :xml =&gt; @article }
+  end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="04_controladors_1/04_accions_restful/9">
+<h1>M&#xE8;todes RESTful</h1>
+
+<h2><code>edit</code></h2>
+
+<pre class="sh_ruby"><code>def edit
+  @article = Article.find(params[:id])
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection small" ref="04_controladors_1/04_accions_restful/10">
+<h1>M&#xE8;todes RESTful</h1>
+
+<h2><code>create</code></h2>
+
+<pre class="sh_ruby"><code>def create
+  @article = Article.new(params[:article])
+
+  respond_to do |format|
+    if @article.save
+      format.html { redirect_to @article, :notice =&gt; 'Ok' }
+      format.xml {
+        render :xml =&gt; @article, :status =&gt; :created,
+          :location =&gt; @article
+      }
+    else
+      format.html { render :action =&gt; "new" }
+      format.xml {
+        render :xml =&gt; @article.errors,
+          :status =&gt; :unprocessable_entity
+      }
+    end
+  end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection small" ref="04_controladors_1/04_accions_restful/11">
+<h1>M&#xE8;todes RESTful</h1>
+
+<h2><code>update</code></h2>
+
+<pre class="sh_ruby"><code>def update
+  @article = Article.find(params[:id])
+
+  respond_to do |format|
+    if @article.update_attributes(params[:article])
+      format.html { redirect_to @article, :notice =&gt; 'Ok' }
+      format.xml { head :ok }
+    else
+      format.html { render :action =&gt; "edit" }
+      format.xml {
+        render :xml =&gt; @article.errors,
+          :status =&gt; :unprocessable_entity
+      }
+    end
+  end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="04_controladors_1/04_accions_restful/12">
+<h1>M&#xE8;todes RESTful</h1>
+
+<h2><code>destroy</code></h2>
+
+<pre class="sh_ruby"><code>def destroy
+  @article = Article.find(params[:id])
+  @article.destroy
+
+  respond_to do |format|
+    format.html { redirect_to(articles_url) }
+    format.xml  { head :ok }
+  end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets" ref="04_controladors_1/05_varis/1">
+<h1>Par&#xE0;metres</h1>
+
+<ul>
+<li>Els par&#xE0;metres ens arriben al controlador dins del hash <code>params</code>.</li>
+<li>En els missatges de de <code>log</code> de la comanda <code>rails server</code> podem
+observar-los (depurar)</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets small" ref="04_controladors_1/05_varis/2">
+<h1>Render / Redirect</h1>
+
+<ul>
+<li><p>Cada acci&#xF3; <strong>ha</strong> de renderitzar una vista (o text) o redirigir
+a alguna altra acci&#xF3;.</p></li>
+<li><p>Per defecte Rails anir&#xE0; a buscar la vista amb el mateix nom que
+l'acci&#xF3; en execuci&#xF3;.</p></li>
+</ul>
+
+<p>Exemple:</p>
+
+<pre class="sh_ruby"><code>render :action =&gt; "edit"
+# renderitza la vista corresponen
+# a l'acci&#xF3; 'edit'
+
+redirect_to(articles_url)
+# redirigeix a /articles</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="04_controladors_1/05_varis/3">
+<h1>Formats de resposta</h1>
+
+<ul>
+<li>Rails pot generar respostes en altres formats a part d'HTML.</li>
+<li>Els controladors pre-generats per <code>scaffold</code> inclouen respostes
+en format XML.</li>
+<li>Altres exemples de formats inclouen Javascript i JSON.</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets" ref="04_controladors_1/05_varis/4">
+<h1>El Flash</h1>
+
+<ul>
+<li>Representa missatges que nom&#xE9;s viuen (o s&#xF3;n v&#xE0;lids) per una petici&#xF3;.</li>
+<li>Habitualment es defineixen en un redirect per indicar un canvi d'estat en
+l'aplicaci&#xF3;.</li>
+</ul>
+
+<p>Exemple:</p>
+
+<pre class="sh_ruby"><code># ArticlesController.update
+redirect_to @article, :notice =&gt; 'Actualitzat OK.'</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="05_vistes/01_MVC/1">
+<p><img src="file/assets/images/rails.png" alt="Rails logo"/>
+
+<h1>Rails desde Zero</h1>
+
+<h2>MVC</h2>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="05_vistes/01_MVC/2">
+<h1>MVC en Rails</h1>
+
+<p><img src="file/assets/images/rails_mvc.png" alt="Rails MVC"/>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="05_vistes/01_MVC/3">
+<h1>MVC en Rails</h1>
+
+<h2>Vistes</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="05_vistes/02_ERB/1">
+<h1>ERB</h1>
+
+<h3>Embedded Ruby</h3>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection incremental" ref="05_vistes/02_ERB/2">
+<h1>ERB</h1>
+
+<ul>
+<li><p>ERB es el llenguatge de "template" per defecte en Rails.</p>
+
+<ul>
+<li>Podem utilitzar d'altres instal.lant les gemes corresponents com: Haml,
+Liquid, Slim, etc.</li>
+</ul></li>
+<li><p>ERB ens permet incloure codi Ruby dins d'HTML.</p>
+
+<ul>
+<li>Similar a ASP, JSP, PHP</li>
+</ul></li>
+<li><p>Els blocs de codi Ruby es delimiten per <code>&lt;% %&gt;</code>.</p></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="05_vistes/02_ERB/3">
+<h1>ERB</h1>
+
+<h2>Exemples</h2>
+
+<p>Imprimir una variable</p>
+
+<pre class="sh_ruby"><code># Escriu el titol de l'article (ja escapat)
+&lt;%= @article.titol %&gt;
+
+# igual per&#xF2; no segur
+&lt;%= raw @article.text %&gt;</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="05_vistes/02_ERB/4">
+<h1>ERB</h1>
+
+<h2>Exemples</h2>
+
+<p>Llistar un conjunt d'articles</p>
+
+<pre class="sh_ruby"><code># app/views/articles/index.html.erb
+&lt;% @articles.each do |article| %&gt;
+  ...
+&lt;% end %&gt;</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="05_vistes/02_ERB/5">
+<h1>Helpers</h1>
+
+<h3>Simplificar vistes i evitar duplicaci&#xF3;</h3>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="05_vistes/02_ERB/6">
+<h1>URL Helpers</h1>
+
+<p>Generar enlla&#xE7;os amb el m&#xE8;tode d'ajuda (helper) <code>link_to</code>:</p>
+
+<pre class="sh_ruby"><code>link_to 'Mostra', article
+# =&gt; "/articles/17" (GET)
+
+link_to 'Edita', edit_article_path(article)
+# =&gt; "/articles/17/edit" (GET)
+
+link_to 'Elimina', article, :method =&gt; :delete,
+  :confirm =&gt; 'Segur?'
+# =&gt; "/articles/17" (DELETE)</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="05_vistes/02_ERB/7">
+<h1>Exemple</h1>
+
+<p><code>LlibresController</code></p>
+
+<pre class="sh_ruby"><code>class LlibresController &lt; ApplicationController
+  def index
+    @llibres = Llibre.all
+  end
+end</code></pre>
+
+<p><code>config/routes.rb</code></p>
+
+<pre class="sh_ruby"><code>resources :llibres</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection smaller" ref="05_vistes/02_ERB/8">
+<h1>Exemple</h1>
+
+<p><code>app/views/llibres/index.html.erb</code></p>
+
+<pre class="sh_html"><code>&lt;h1&gt;Llistat de llibres&lt;/h1&gt;
+
+&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Titol&lt;/th&gt;
+    &lt;th&gt;Sumari&lt;/th&gt;
+    &lt;th&gt;&lt;/th&gt;
+    &lt;th&gt;&lt;/th&gt;
+    &lt;th&gt;&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;% @llibres.each do |llibre| %&gt;
+  &lt;tr&gt;
+    &lt;td&gt;&lt;%= llibre.title %&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;%= llibre.content %&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;%= link_to 'Mostra', llibre %&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;%= link_to 'Edita', edit_llibre_path(book) %&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;%= link_to 'Elimina', book, :confirm =&gt; 'Segur?', :method =&gt; :delete %&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;% end %&gt;
+&lt;/table&gt;
+
+&lt;br /&gt;
+
+&lt;%= link_to 'Nou llibre', new_llibre_path %&gt;</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="05_vistes/02_ERB/9">
+<h1>Altres m&#xE8;todes d'ajuda</h1>
+
+<h2>Formateig de nombres</h2>
+
+<pre class="sh_ruby"><code>number_to_currency
+number_to_human
+number_to_percentage
+number_wtih_precision</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="05_vistes/02_ERB/10">
+<h1>Altres m&#xE8;todes d'ajuda</h1>
+
+<h2>"Assets"</h2>
+
+<pre class="sh_ruby"><code>javascript_include_tag
+stylesheet_link_tag
+image_tag
+video_tag
+audio_tag</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="05_vistes/02_ERB/11">
+<h1>Creant m&#xE8;todes d'ajuda</h1>
+
+<ul>
+<li>Rails ens permet crear els nostres m&#xE8;todes d'ajuda propis.</li>
+<li>Es situen a <code>app/helpers</code></li>
+<li>S&#xF3;n m&#xF2;duls on podem escriure les funcions que volem tenir disponibles a les
+vistes.</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="05_vistes/02_ERB/12">
+<h1>Creant m&#xE8;todes d'ajuda</h1>
+
+<h2>Com?</h2>
+
+<ul>
+<li>Aprofitar l'arxiu existent per defecte <code>app/helpers/application_helper.rb</code></li>
+<li>Podem escriure nous arxius <code>_helper.rb</code> i carregar-los mitjan&#xE7;ant el
+m&#xE8;tode <code>helper</code>.</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="05_vistes/02_ERB/13">
+<h1>Creant m&#xE8;todes d'ajuda</h1>
+
+<h2>Com?</h2>
+
+<p>Modificar <code>ApplicationHelper</code></p>
+
+<pre class="sh_ruby"><code># app/helpers/application_helper
+module ApplicationHelper
+  def formateja_data(d)
+    d.strftime("%B %e, %Y")
+  end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="05_vistes/02_ERB/14">
+<h1>Creant m&#xE8;todes d'ajuda</h1>
+
+<h2>Com?</h2>
+
+<p>Creant nous arxius <code>_helper</code>:</p>
+
+<pre class="sh_ruby"><code># app/helpers/formats_helper
+module FormatsHelper
+  def formateja_data(d)
+    d.strftime("%B %e, %Y")
+  end
+end</code></pre>
+
+<p>Despr&#xE9;s l'hem d'incloure en el controlador on el volem fer servir amb el
+m&#xE8;tode <code>helper</code></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="05_vistes/02_ERB/15">
+<h1>Creat m&#xE8;todes d'ajuda</h1>
+
+<h2>Com?</h2>
+
+<p>Fer els nostres m&#xF2;duls d'ajuda accessibles</p>
+
+<pre class="sh_ruby"><code># app/controllers/home_controller.rb
+class HomeController &lt; ApplicationController
+  # incloure el helper de formats de data
+  helper :formats
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="05_vistes/02_ERB/16">
+<h1>Creat m&#xE8;todes d'ajuda</h1>
+
+<h2>Com?</h2>
+
+<p>Fer els nostres m&#xF2;duls d'ajuda accessibles</p>
+
+<pre class="sh_ruby"><code># app/controllers/application_controller.rb
+class ApplicationController &lt; ActionController::Base
+  # incloure tots els helpers definits
+  helper :all
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="05_vistes/03_layouts/1">
+<h1>Layouts</h1>
+
+<h3>La base HTML per a la web</h3>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental small" ref="05_vistes/03_layouts/2">
+<h1>Layouts</h1>
+
+<h2>Layout d'aplicaci&#xF3;</h2>
+
+<ul>
+<li>Es troba a <code>app/views/layouts/application.html.erb</code>.</li>
+<li>Cont&#xE9; l'HTML b&#xE0;sic per a la nostra web.</li>
+<li>Enlla&#xE7;a les fulles d'estil</li>
+<li>Inclou els fitxers javascript.</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="05_vistes/03_layouts/3">
+<h1>Layout d'aplicaci&#xF3;</h1>
+
+<pre class="sh_html"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Titol&lt;/title&gt;
+  &lt;%= stylesheet_link_tag    "application" %&gt;
+  &lt;%= javascript_include_tag "application" %&gt;
+  &lt;%= csrf_meta_tags %&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;%= yield %&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="05_vistes/03_layouts/4">
+<h1>Layouts</h1>
+
+<h2>Utilitzant layouts</h2>
+
+<ul>
+<li>En Rails podem en tot moment especificar el layout a utilitzar per mitj&#xE0;
+de la sent&#xE8;ncia <code>layout</code>.</li>
+<li>Els layouts sempre s&#xF3;n compartits en la cadena jer&#xE0;rquica i sempre
+substitueixin els m&#xE9;s generals.</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="05_vistes/03_layouts/5">
+<h1>Especificar un layout</h1>
+
+<p>Per especificar un layout diferent en un controlador, podem:</p>
+
+<pre class="sh_ruby"><code>class ProductsController &lt; ApplicationController
+  layout "inventory"
+  #...
+end</code></pre>
+
+<p>En aquest c&#xE0;s, les vistes corresponents a <code>ProductsController</code> utilitzarant
+el layout <code>app/views/layouts/inventory.html.erb</code>.</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection small" ref="05_vistes/03_layouts/6">
+<h1>Especificar un layout</h1>
+
+<p>Podem tamb&#xE9; utilizar un m&#xE8;tode per definir quin layout utilitzar:</p>
+
+<pre class="sh_ruby"><code>class ApplicationController &lt; ActionController::Base
+  ...
+  layout :layout_by_resource
+
+  private
+
+  def layout_by_resource
+    if devise_controller?
+      'sign'
+    else
+      'application'
+    end
+  end
+  ...
+end</code></pre>
+
+<p>En aquest cas, si estem utilitzan <code>devise</code>, renderitzarem el layout <code>sign</code>.</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection incremental" ref="05_vistes/03_layouts/7">
+<h1><code>yield</code></h1>
+
+<ul>
+<li><p>En un layout, la sent&#xE8;ncia <code>yield</code> identifica on el contingut d'una vista
+ha de ser introdu&#xEF;t.</p></li>
+<li><p>Podem tenir m&#xE9;s d'una sentencia <code>yield</code> per layout especificant-li un nom per
+mitj&#xE0; d'un s&#xED;mbol.</p>
+
+<ul>
+<li>p.ex: <code>&lt;%= yield :head %&gt;</code></li>
+</ul></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection small" ref="05_vistes/03_layouts/8">
+<h1><code>yield</code></h1>
+
+<p>Un sol bloc <code>yield</code></p>
+
+<pre class="sh_html"><code>&lt;html&gt;
+  &lt;head&gt;&lt;/head&gt;
+  &lt;body&gt;
+    &lt;%= yield %&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+<p>Varis</p>
+
+<pre class="sh_html"><code>&lt;html&gt;
+  &lt;head&gt;&lt;%= yield :head %&gt;&lt;/head&gt;
+  &lt;body&gt;
+    &lt;%= yield %&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="05_vistes/03_layouts/9">
+<h1><code>content_for</code></h1>
+
+<p>La sentencia <code>content_for</code> denota el contingut que correspon a un block <code>yield</code>
+amb nom.</p>
+
+<p>Ex:</p>
+
+<pre class="sh_ruby"><code>&lt;% content_for(:head) do %&gt;
+...
+&lt;% end %&gt;</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection small" ref="05_vistes/03_layouts/10">
+<h1><code>yield/content_for</code></h1>
+
+<h3>Exemple</h3>
+
+<pre class="sh_html"><code>&lt;!-- app/views/layouts/application.html.erb --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;
+      &lt;%= content_for?(:title) ? yield(:title) : 'Untitled' %&gt;
+    &lt;/title&gt;
+    &lt;%= stylesheet_link_tag 'application' %&gt;
+    &lt;%= csrf_meta_tag %&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;%= javascript_include_tag 'application' %&gt;
+    &lt;%= yield(:foot) %&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection small" ref="05_vistes/03_layouts/11">
+<h1><code>yield/content_for</code></h1>
+
+<h3>Exemple</h3>
+
+<pre class="sh_html"><code>&lt;!-- app/views/home/index.html.erb --&gt;
+&lt;% content_for(:title) { "Inici - Benvinguts!" } %&gt;
+&lt;% content_for(:foot) do %&gt;
+  &lt;%= javascript_include_tag 'home' %&gt;
+&lt;% end %&gt;
+
+&lt;h1&gt;Benvigut visitant!&lt;/h1&gt;
+
+...</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection smaller" ref="05_vistes/03_layouts/12">
+<h1><code>yield/content_for</code></h1>
+
+<p>Tamb&#xE9; ho podem fer servir per definir-nos m&#xE8;todes d'ajuda si ens conv&#xE9;</p>
+
+<pre class="sh_ruby"><code># helper :layout
+module LayoutHelper
+  def title(page_title, show_title = true)
+    content_for(:title) { h(page_title.to_s) }
+    @show_title = show_title
+  end
+
+  def show_title?
+    @show_title
+  end
+
+  def set_updated_at(timestamp)
+    content_for(:updated_at) { h(timestamp.strftime('%d/%m/%Y %H:%M')) }
+  end
+
+  def stylesheet(*args)
+    content_for(:head) { stylesheet_link_tag(*args) }
+  end
+
+  def javascript(*args)
+    content_for(:foot) { javascript_include_tag(*args) }
+  end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="05_vistes/04_parcials/1">
+<h1>Parcials</h1>
+
+<h3>Compartir codi entre p&#xE0;gines</h3>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="05_vistes/04_parcials/2">
+<h1>Parcials</h1>
+
+<ul>
+<li><p>Les parts que es <em>repeteixen</em> en una vista, habitualment es separen
+en "parcials" (partials).</p></li>
+<li><p>Un "parcial" (partial) &#xE9;s un arxiu de vista (p, ex: .html.erb) que comen&#xE7;a
+per un gui&#xF3; baix. P.ex: <code>_form.html.erb</code>.</p></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="05_vistes/04_parcials/3">
+<h1>Parcials</h1>
+
+<h3>Utilitzant parcials</h3>
+
+<p>Per a renderitzar un parcial com a part d'una vista s'utilitza el m&#xE8;tode
+<code>render</code> desde la mateixa.</p>
+
+<pre class="sh_html"><code>&lt;%= render "menu" %&gt;</code></pre>
+
+<p>Aix&#xF2; renderitza l'arxiu <code>_menu.html.erb</code> del <strong>mateix</strong> directori que la
+vista en execuci&#xF3;. Per a utilitzar un parcial situat en un altra carpeta:</p>
+
+<pre class="sh_html"><code>&lt;%= render "shared/menu" %&gt;</code></pre>
+
+<p>Aquest &#xFA;ltim renderitzar&#xE0; l'arxiu de <code>app/views/shared/_menu.html.erb</code>.</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="05_vistes/04_parcials/4">
+<h1>Parcials</h1>
+
+<h3>Simplificar vistes</h3>
+
+<p>Els parcials s'utilitzen <strong>principalment</strong> per a simplificar vistes.</p>
+
+<pre class="sh_html"><code>&lt;%= render "shared/banner" %&gt;
+
+&lt;h1&gt;Articles&lt;/h1&gt;
+
+&lt;p&gt;Uns quants articles:&lt;/p&gt;
+...
+
+&lt;%= render "shared/footer" %&gt;</code></pre>
+
+<p>En aquest cas, <code>_banner.html.erb</code> i <code>_footer.html.erb</code> poden contenir contingut
+que es pot "compartir" en diverses vistes.</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="05_vistes/04_parcials/5">
+<h1>Parcials</h1>
+
+<h3>Layouts pr&#xF2;pis</h3>
+
+<p>Un parcial pot utilitzar el seu propi arxiu de layout. Per exemple:</p>
+
+<pre class="sh_ruby"><code>&lt;%= render :partial =&gt; "links", :layout =&gt; "link_bar" %&gt;</code></pre>
+
+<p>Nota: L'arxiu de layout per un parcial tamb&#xE9; ha de comen&#xE7;ar per <code>_</code> i han
+d'estar situats en la mateix carpeta que el parcial al que pertanyen (no a
+la carpeta <code>app/views/layouts</code>).</p>
+
+<p>S'ha d'especificar expl&#xED;citament la clau <code>:partial</code> quan utilitzem altres
+parametres com <code>:layout</code>.</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets" ref="05_vistes/04_parcials/6">
+<h1>Parcials</h1>
+
+<h3>Variables locals</h3>
+
+<ul>
+<li>Podem passar variables als parcials per a fer-los m&#xE9;s potents. Per exemple:</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection smaller" ref="05_vistes/04_parcials/7">
+<h1>Parcials</h1>
+
+<h3>Variables locals</h3>
+
+<p><code>new.html.erb</code></p>
+
+<pre class="sh_html"><code>&lt;h1&gt;Nou article&lt;/h1&gt;
+&lt;%= error_messages_for :article %&gt;
+&lt;%= render :partial =&gt; "form", :locals =&gt; { :article =&gt; @article } %&gt;</code></pre>
+
+<p><code>edit.html.erb</code></p>
+
+<pre class="sh_html"><code>&lt;h1&gt;Editar article&lt;/h1&gt;
+&lt;%= error_messages_for :article %&gt;
+&lt;%= render :partial =&gt; "form", :locals =&gt; { :article =&gt; @article } %&gt;</code></pre>
+
+<p><code>_form.html.erb</code></p>
+
+<pre class="sh_html"><code>&lt;%= form_for(article) do |f| %&gt;
+  &lt;p&gt;
+    &lt;b&gt;Nom de l'article&lt;/b&gt;&lt;br /&gt;
+    &lt;%= f.text_field :nom %&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    &lt;%= f.submit %&gt;
+  &lt;/p&gt;
+&lt;% end %&gt;</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="05_vistes/04_parcials/8">
+<h1>Parcials</h1>
+
+<h3>Variables locals</h3>
+
+<p>Cada parcial <strong>ja</strong> t&#xE9; definida autom&#xE0;ticament una variable local amb el
+mateix nom que el parcial (meny el gui&#xF3; baix). Podem assignar-li un valor
+per mitj&#xE0; de la opci&#xF3; <code>:object</code>:</p>
+
+<pre class="sh_ruby"><code>&lt;%= render :partial =&gt; "client", :object =&gt; @client %&gt;</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="05_vistes/04_parcials/9">
+<h1>Parcials</h1>
+
+<h3>Variables locals</h3>
+
+<p>Un m&#xE8;tode r&#xE0;pid, alternatiu a l'anterior</p>
+
+<pre class="sh_ruby"><code>&lt;%= render @client %&gt;</code></pre>
+
+<p>Suposant que la variable d'inst&#xE0;ncia <code>@client</code> cont&#xE9; una inst&#xE0;ncia del model
+<code>Client</code>, es traduir&#xE0; a:</p>
+
+<pre class="sh_ruby"><code>&lt;%= render :partial =&gt; "client", :object =&gt; @client %&gt;</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="05_vistes/04_parcials/10">
+<h1>Parcials</h1>
+
+<h3>Renderitzar col.leccions</h3>
+
+<p>Els parcials s&#xF3;n molt &#xFA;tils per a renderitzar col.leccions. Per a fer-ho podem
+utilizar la opci&#xF3;: <code>:collection</code>.</p>
+
+<p><code>index.html.erb</code></p>
+
+<pre class="sh_html"><code>&lt;h1&gt;Productes&lt;/h1&gt;
+&lt;%= render :partial =&gt; "product", :collection =&gt; @products %&gt;</code></pre>
+
+<p><code>_product.html.erb</code></p>
+
+<pre class="sh_html"><code>&lt;p&gt;Producte: &lt;%= product.name %&gt;&lt;/p&gt;</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="05_vistes/04_parcials/11">
+<h1>Parcials</h1>
+
+<h3>Renderitzar col.leccions</h3>
+
+<p>En l'exemple anterior ens enstalviem de fer:</p>
+
+<p><code>index.html.erb</code></p>
+
+<pre class="sh_html"><code>&lt;h1&gt;Productes&lt;/h1&gt;
+&lt;% @products.each do |product| %&gt;
+  &lt;%= render :partial =&gt; "product", :object =&gt; product %&gt;
+&lt;% end %&gt;</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="05_vistes/05_formularis/1">
+<h1>Formularis</h1>
+
+<h3>Obtenir dades dels usuaris</h3>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="05_vistes/05_formularis/2">
+<h1>Formularis</h1>
+
+<h3>En Rails tenim 2 maneres principals de generar formularis en una vista</h3>
+
+<ul>
+<li><code>form_for</code></li>
+<li><code>form_tag</code></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="05_vistes/05_formularis/3">
+<h1><code>form_for</code></h1>
+
+<ul>
+<li><p>El bloc <code>form_for</code> s'utilitza per a crear un formulari <em>associat</em> a un
+m&#xF2;del (entitat o recurs).</p></li>
+<li><p>Dins d'aquest bloc tenim acc&#xE9;s a m&#xE8;todes per construir els controls
+del formulari.</p></li>
+<li><p>Per exemple, <code>f.text_field :title</code> indica a Rails que ha de generar
+una caixa de text i "conectarla" a l'atribut <code>title</code> del model referenciat
+pel formulari.</p></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="05_vistes/05_formularis/4">
+<h1><code>form_for</code></h1>
+
+<h3>Exemple</h3>
+
+<pre class="sh_html"><code>&lt;%= form_for @article do |f| %&gt;
+  &lt;%= f.text_field :title %&gt;
+  &lt;%= f.text_area :body, :size =&gt; "60x12" %&gt;
+  &lt;%= f.submit "Create" %&gt;
+&lt;% end %&gt;</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="05_vistes/05_formularis/5">
+<h1><code>form_for</code></h1>
+
+<h3>Algunes opcions comuns</h3>
+
+<pre class="sh_ruby"><code># Crear un nou article
+form_for(@article, :url =&gt; articles_path)
+form_for(@article)
+# utilizar atributs d'estil
+form_for(@article, :html =&gt; {:class =&gt; 'nice_form'})
+
+## Editar un article
+form_for(@article, :url =&gt; article_path(@article),
+  :html =&gt; { :method =&gt; "put" })
+form_for(@article)</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection small" ref="05_vistes/05_formularis/6">
+<h1><code>form_for</code></h1>
+
+<h3>Utilitzant m&#xE9;s d'un recurs (anidats)</h3>
+
+<pre class="sh_ruby"><code>&lt;h3&gt;Afegir un comentari&lt;/h3&gt;
+&lt;%= form_for([@article, @article.comentaris.build]) do |f| %&gt;
+  &lt;div class="field"&gt;
+    &lt;p&gt;&lt;%= f.label :text %&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;%= f.text_area :text %&gt;&lt;/p&gt;
+  &lt;/div&gt;
+  div class="actions"&gt;
+    &lt;%= f.submit %&gt;
+  &lt;/div&gt;
+&lt;% end %&gt;</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="05_vistes/05_formularis/7">
+<h1><code>form_for</code></h1>
+
+<h3>Form Helpers</h3>
+
+<pre class="sh_ruby"><code>label
+text_field
+text_area
+check_box
+file_field
+password_field
+...</code></pre>
+
+<p>Podem veure'n la llista complerta a:
+<a href="http://api.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html">http://api.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html</a></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="05_vistes/05_formularis/8">
+<h1><code>form_tag</code></h1>
+
+<ul>
+<li><p>El bloc <code>form_tag</code> s'utilitza per a generar un formulari que no est&#xE0;
+<em>associat</em> a un model.</p></li>
+<li><p>Els "helpers" o m&#xE8;todes que s'utilitzen dins d'un bloc <code>form_tag</code>
+acaben amb <code>_tag</code>. P.ex: <code>label_tag</code> i <code>text_field_tag</code>.</p></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="05_vistes/05_formularis/9">
+<h1><code>form_tag</code></h1>
+
+<h3>Exemple</h3>
+
+<pre class="sh_html"><code>&lt;%= form_tag("/search", :method =&gt; "get") do %&gt;
+  &lt;%= label_tag(:q, "Search for:") %&gt;
+  &lt;%= text_field_tag(:q) %&gt;
+  &lt;%= submit_tag("Search") %&gt;
+&lt;% end %&gt;</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="05_vistes/05_formularis/10">
+<h1><code>form_tag</code></h1>
+
+<h3>Algunes opcions comuns</h3>
+
+<pre class="sh_ruby"><code>form_tag({:controller =&gt; "people", :action =&gt; "search"},
+  :method =&gt; "get", :class =&gt; "nice_form")</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="05_vistes/05_formularis/11">
+<h1><code>form_tag</code></h1>
+
+<h3>Exemple</h3>
+
+<pre class="sh_html"><code>&lt;%= form_tag({:action =&gt; :upload},
+    :multipart =&gt; true) do %&gt;
+  &lt;%= file_field_tag 'picture' %&gt;
+&lt;% end %&gt;</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="05_vistes/05_formularis/12">
+<h1><code>form_tag</code></h1>
+
+<h3>Form Helpers</h3>
+
+<pre class="sh_ruby"><code>&lt;%= label_tag(:pet_dog, "I own a dog") %&gt;
+&lt;%= text_field_tag(:name, "John") %&gt;
+&lt;%= text_area_tag(:message, "Hi, nice site", :size =&gt; "24x6") %&gt;
+&lt;%= hidden_field_tag(:parent_id, "5") %&gt;
+&lt;%= password_field_tag(:password) %&gt;
+&lt;%= check_box_tag(:pet_dog) %&gt;
+&lt;%= radio_button_tag(:age, "child") %&gt;
+...</code></pre>
+
+<p>Podem veure'n la llista complerta a:
+<a href="http://api.rubyonrails.org/classes/ActionView/Helpers/FormTagHelper.html">http://api.rubyonrails.org/classes/ActionView/Helpers/FormTagHelper.html</a></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="06_controladors_2/01_MVC/1">
+<p><img src="file/assets/images/rails.png" alt="Rails logo"/>
+
+<h1>Rails desde Zero</h1>
+
+<h2>MVC</h2>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="06_controladors_2/01_MVC/2">
+<h1>MVC en Rails</h1>
+
+<p><img src="file/assets/images/rails_mvc.png" alt="Rails MVC"/>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="06_controladors_2/01_MVC/3">
+<h1>MVC en Rails</h1>
+
+<h2>Controladors (Part 2)</h2>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="06_controladors_2/02_render/1">
+<h1>Renderitzant respostes</h1>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="06_controladors_2/02_render/2">
+<h1>Renderitzant respostes</h1>
+
+<p>Des del punt de vista d'un controlador, existeixen <strong>3 maneres</strong> de generar
+una resposta HTTP en rails.</p>
+
+<ul>
+<li>Utilitzar el m&#xE8;tode <code>render</code> per a renderitzar una vista.</li>
+<li>Utilizar el m&#xE8;tode <code>redirect_to</code> per a enviar un codi de redirecci&#xF3; HTTP.</li>
+<li>Cridar el m&#xE8;tode <code>head</code> per generar una resposta consistent en nom&#xE9;s
+les cap&#xE7;aleres.</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="06_controladors_2/02_render/3">
+<h1><code>render</code></h1>
+
+<h3>Mitjan&#xE7;ant la comanda <code>render</code> podem</h3>
+
+<ul>
+<li>Renderitzar vistes incl&#xFA;s d'altres accions.</li>
+<li>Renderitzar arxius.</li>
+<li>Renderitzar text arbitrari o formats pr&#xF2;pis.</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="06_controladors_2/02_render/4">
+<h1>Renderitzar: Vistes</h1>
+
+<pre class="sh_ruby"><code>render :edit
+render :action =&gt; :edit
+render 'edit'
+render 'edit.html.erb'
+render :action =&gt; 'edit'
+render :action =&gt; 'edit.html.erb'
+render 'books/edit'
+render 'books/edit.html.erb'</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="06_controladors_2/02_render/5">
+<h1>Renderitzar: Arxius</h1>
+
+<pre class="sh_ruby"><code>render :file =&gt; "{Rails.root}/views/books/edit"
+render :file =&gt; "{Rails.root}/public/400.html"</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="06_controladors_2/02_render/6">
+<h1>Renderitzar: Text o formats</h1>
+
+<pre class="sh_ruby"><code>render :text =&gt; "OK"
+render :json =&gt; @product
+render :xml =&gt; @product
+render :js =&gt; "alert('Hello Rails');"
+
+# tamb&#xE9; no res
+render :nothing =&gt; true</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="06_controladors_2/02_render/7">
+<h1><code>render</code></h1>
+
+<h2>Opcions comuns</h2>
+
+<h3><code>:content_type, :layout, :status</code></h3>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="06_controladors_2/02_render/8">
+<h1><code>render :content_type</code></h1>
+
+<p>Podem necessitar modificar el <code>Content-Type</code> generat per defecte des del
+nostre controlador (per defect text/html).</p>
+
+<pre class="sh_ruby"><code>render :file =&gt; arxiu, :content_type =&gt; "application/pdf"</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="06_controladors_2/02_render/9">
+<h1><code>render :layout</code></h1>
+
+<p>Sense aquesta opci&#xF3;, render utilitzar el "layout" que estigui definit
+en el controlador en curs o el general (application).</p>
+
+<p>Si volem for&#xE7;ar-lo puntualment:</p>
+
+<pre class="sh_ruby"><code>render :layout =&gt; 'especial'</code></pre>
+
+<p>O no utilizar cap layout:</p>
+
+<pre class="sh_ruby"><code>render :layout =&gt; false</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="06_controladors_2/02_render/10">
+<h1><code>render :status</code></h1>
+
+<p>La opci&#xF3; <code>:status</code> ens permet modificar el codi d'estat de la resposta HTTP.</p>
+
+<pre class="sh_ruby"><code>render :status =&gt; 500
+render :status =&gt; :forbidden</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="06_controladors_2/02_render/11">
+<h1><code>redirect_to</code></h1>
+
+<ul>
+<li><p>Com hem vist <code>render</code> diu a Rails quina vista (o arxiu) s'ha d'utilizar per
+a construir una resposta.</p></li>
+<li><p><code>redirect_to</code> diu al navegador que ha de "redirigir" a una URL diferenta.</p></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="06_controladors_2/02_render/12">
+<h1><code>redirect_to</code></h1>
+
+<pre class="sh_ruby"><code>redirect_to photos_path
+
+redirect_to :back</code></pre>
+
+<p>Podem tamb&#xE9; especificar el codi HTTP que correspon a la redirecci&#xF3;.</p>
+
+<pre class="sh_ruby"><code>redirect_to photos_path, :status =&gt; 301</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="06_controladors_2/02_render/13">
+<h1><code>head</code></h1>
+
+<ul>
+<li>El m&#xE8;tode <code>head</code> pot utilitzar-se per enviar respostes nom&#xE9;s amb cap&#xE7;aleres
+HTTP (sense cos).</li>
+<li>Alternativa m&#xE9;s adequada a <code>render :nothing</code>.</li>
+<li>Nom&#xE9;s accepta un par&#xE0;metre que s'interpreta com un hash de cap&#xE7;aleres HTTP
+amb els seus valors.</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="06_controladors_2/02_render/14">
+<h1><code>head</code></h1>
+
+<p>Exemple</p>
+
+<pre class="sh_ruby"><code>head :bad_request
+# HTTP/1.1 400 Bad Request
+# Connection: close
+...
+
+head :created, :location =&gt; photo_path(@photo)
+# HTTP/1.1 201 Created
+# Connection: close
+# ...
+# Location: /photos/1
+# ...</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="06_controladors_2/03_parametres/1">
+<h1>Par&#xE0;metres</h1>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="06_controladors_2/03_parametres/2">
+<h1>Par&#xE0;metres</h1>
+
+<ul>
+<li>Per accedir als par&#xE0;metres d'una petici&#xF3; HTTP en els nostres
+controladors, podem utilizar el m&#xE8;tode <code>params</code>.</li>
+<li>Els par&#xE0;metres poden venir identificats per les rutes, formularis o directament
+pel query string.</li>
+<li>Podem entendre <code>params</code> com un <code>Hash</code>.</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="06_controladors_2/03_parametres/3">
+<h1>Par&#xE0;metres</h1>
+
+<pre class="sh_ruby"><code>class ClientsController &lt; ActionController::Base
+  # GET /clients?status=activated
+  def index
+    if params[:status] == "activated"
+      @clients = Client.activated
+    else
+      @clients = Client.unactivated
+    end
+  end
+
+  # POST /clients
+  def create
+    @client = Client.new(params[:client])
+    ...
+  end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="06_controladors_2/03_parametres/4">
+<h1>Par&#xE0;metres</h1>
+
+<p>Podem, a m&#xE9;s, especificar par&#xE0;metres per defecte que seran utilitzats
+per a generar URL's si definim el m&#xE8;tode <code>default_url_options</code> en un
+controlador:</p>
+
+<pre class="sh_ruby"><code>class ApplicationController &lt; ActionController::Base
+  def default_url_options(opts)
+    {:locale =&gt; I18n.locale}
+  end
+end</code></pre>
+
+<p>Ho podem definir a un controlador concret o a <code>ApplicationController</code> si
+volem utilizar-ho globalment.</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="06_controladors_2/04_sessions/1">
+<h1>Sessions</h1>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="06_controladors_2/04_sessions/2">
+<h1>Sessions</h1>
+
+<ul>
+<li><p>Una aplicaci&#xF3; web t&#xE9; una sessi&#xF3; per usuari que ens serveix per enmagatzemar
+dades que podr&#xE1;n persistir entre crides.</p></li>
+<li><p>En Rails podem utilizar diferents mecanismes per enmagatzemar
+les dades d'una sessi&#xF3;: <code>CookiStore, MemcacheStore, ActiveRecordStore, ...</code>.</p></li>
+<li><p>Podem configurar-ho a: <code>config/initializers/session_store.rb</code>.</p></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="06_controladors_2/04_sessions/3">
+<h1>Sessions</h1>
+
+<ul>
+<li><p>En un controlador podem accedir a les dades de sessi&#xF3; per mitj&#xE0; del m&#xE8;tode
+<code>session</code>.</p></li>
+<li><p>Al igual que el m&#xE8;tode <code>params</code>, podem entendre que <code>session</code> es comporta
+igual que un <code>Hash</code>.</p></li>
+<li><p>Les sessions en Rails tamb&#xE9; son "Lazy Loaded". Si no es fant servir, no es
+carreguen i, per tant, no cal desactivar-les.</p></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="06_controladors_2/04_sessions/4">
+<h1>Sessions</h1>
+
+<h3>Accedir a valors en la sessi&#xF3;</h3>
+
+<pre class="sh_ruby"><code>class ApplicationController &lt; ActionController::Base
+  ...
+  private
+
+  def current_user
+    @current_user ||= if session[:current_user_id]
+      User.find(session[:current_user_id])
+    end
+  end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="06_controladors_2/04_sessions/5">
+<h1>Sessions</h1>
+
+<h3>Enmagatzemar valors en la sessi&#xF3;</h3>
+
+<pre class="sh_ruby"><code>class UserSessionsController &lt; ApplicationController
+  ...
+  def create
+    if user = User.authenticate(params[:username],
+      params[:password])
+      session[:current_user_id] = user.id
+
+      redirect_to root_url,
+        :notice =&gt; "Benvingut, #{user.name}."
+    end
+
+    render :new, :alert =&gt; 'Usuari invalid'
+  end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="06_controladors_2/04_sessions/6">
+<h1>Sessions</h1>
+
+<h3>Eliminar valors de la sessi&#xF3;</h3>
+
+<pre class="sh_ruby"><code>class UserSessionsController &lt; ApplicationController
+  ...
+  def destroy
+    @current_user = session[:current_user_id] = nil
+    redirect_to root_url
+  end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="06_controladors_2/05_cookies/1">
+<h1>Cookies</h1>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="06_controladors_2/05_cookies/2">
+<h1>Cookies</h1>
+
+<ul>
+<li><p>Les nostres aplicacions poden enmagatzemar petites quantitats de dades
+per al client (anomenades cookies) que ser&#xE1;n persistides entre <em>requests</em> i
+incl&#xFA;s sessions.</p></li>
+<li><p>Podem accedir a les cookies per mitj&#xE0; del m&#xE8;tode <code>cookies</code>.</p></li>
+<li><p>Igual que amb els par&#xE0;metres o sessions, funciona com un <code>Hash</code>.</p></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="06_controladors_2/05_cookies/3">
+<h1>Cookies</h1>
+
+<p>Establir/modificar i llegir una cookie</p>
+
+<pre class="sh_ruby"><code>cookies[:idioma] = I18n.locale
+
+puts cookies[:idioma]
+=&gt; 'es'</code></pre>
+
+<p>Eliminar una cookie</p>
+
+<pre class="sh_ruby"><code># Eliminar una cookie
+cookies.delete(:idioma)</code></pre>
+
+<p>A diferencia que amb les sessions, on les elimin&#xE0;vem assignant <code>nil</code>, per eliminar
+el valor d'una cookie hem d'utilitzar <code>cookies.delete(:key)</code>.</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="06_controladors_2/06_filtres/1">
+<h1>Filtres</h1>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="06_controladors_2/06_filtres/2">
+<h1>Filtres</h1>
+
+<ul>
+<li><p>Els "filtres" s&#xF3;n m&#xE8;todes que s'executen abans, despres o "al voltant" d'una
+acci&#xF3; d'un controlador.</p></li>
+<li><p>Els filtres s'hereden jer&#xE0;rquicament, llavors si definim un filtre en
+<code>ApplicationController</code>, ser&#xE0; executat en cada controlador de l'aplicaci&#xF3;.</p></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="06_controladors_2/06_filtres/3">
+<h1>Filtes</h1>
+
+<h2>Especificant filtres</h2>
+
+<pre class="sh_ruby"><code># el m&#xE8;tode require_login es cridar&#xE0; ABANS
+# que qualsevol acci&#xF3; d'un controlador
+before_filter :require_login
+
+# despr&#xE8;s d'executar l'acci&#xF3; "destroy" es cridar&#xE0;
+# el m&#xE8;tode cleanup
+after_filter  :cleanup, :only =&gt; :destroy
+
+# s'encapsular&#xE0; l'acci&#xF3; "show" dins de la funci&#xF3;
+# wrap_in_transaction
+around_filter :wrap_in_transaction, :only =&gt; :show</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="06_controladors_2/06_filtres/4">
+<h1><code>before_filter</code></h1>
+
+<p>Els filtres de tipus <code>before_filter</code> s'executen <strong>abans</strong> que les accions del
+controlador i poden modificar i/o aturar el cicle de request.</p>
+
+<pre class="sh_ruby"><code>class ApplicationController &lt; ActionController::Base
+  before_filter :login_required
+
+  private
+
+  def login_required
+    unless !!current_user
+      redirect_to login_url
+    end
+  end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="06_controladors_2/06_filtres/5">
+<h1><code>after_filter</code></h1>
+
+<p>Els filtres de tipus <code>after_filter</code> s'executen <strong>despr&#xE9;s</strong> que una acci&#xF3; d'un
+controlador s'ha executat. Obviament, no poden modificar el cicle de request per&#xF2;
+en canvi tenen acc&#xE9;s a les dades de la resposta.</p>
+
+<pre class="sh_ruby"><code>class BooksController &lt; ActionController::Base
+  after_filter :cleanup, :only =&gt; :destroy
+
+  private
+
+  def cleanup
+    # ...
+  end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection small" ref="06_controladors_2/06_filtres/6">
+<h1><code>around_filter</code></h1>
+
+<p>Aquests filtres "encapsulen" les accions d'un controlador dins de la funci&#xF3;
+especificada. S'ha d'utilitzar <code>yield</code> per indicar el moment on s'ha d'executar
+l'acci&#xF3; corresponent.</p>
+
+<pre class="sh_ruby"><code>class ChangesController &lt; ActionController::Base
+  around_filter :wrap_in_transaction, :only =&gt; :show
+
+  private
+
+  def wrap_in_transaction
+    ActiveRecord::Base.transaction do
+      begin
+        yield # s'executa l'acci&#xF3; corresponent
+      ensure
+        raise ActiveRecord::Rollback
+      end
+    end
+  end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="06_controladors_2/07_reqresp/1">
+<h1>Request/Response</h1>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection bullets incremental" ref="06_controladors_2/07_reqresp/2">
+<h1>Request/Response</h1>
+
+<h3>Rails ens proporciona 2 objectes <code>request</code> i <code>response</code> per a treballar tant amb la petici&#xF3; (request) com amb la resposta que hem de generar (response).</h3>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="06_controladors_2/07_reqresp/3">
+<h1><code>request</code></h1>
+
+<p>L'objecte <code>request</code> cont&#xE9; tota la informaci&#xF3; relativa a la petici&#xF3; que ens
+arriba des del client.</p>
+
+<p>Alguns m&#xE8;todes de l'objecte <code>request</code> s&#xF3;n:</p>
+
+<pre class="sh_ruby"><code>request.host          # hostname
+request.get?          # &#xE9;s una peticio GET?
+request.post?         # &#xE9;s un POST?
+request.headers       # Hash amb les cap&#xE7;aleres
+request.query_string  # Par&#xE0;metres de la URL</code></pre>
+
+<p>La llista complerta de m&#xE8;todes de l'objecte <code>request</code> la podem trobar a:
+<a href="http://api.rubyonrails.org/classes/ActionDispatch/Request.html">http://api.rubyonrails.org/classes/ActionDispatch/Request.html</a></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="06_controladors_2/07_reqresp/4">
+<h1><code>response</code></h1>
+
+<p>L'objecte <code>response</code> ens permet modificar (per exemple, dins un <code>after_filter</code>) la
+resposta que hem de generar al client.</p>
+
+<p>Alguns m&#xE8;todes de l'objecte <code>response</code> s&#xF3;n:</p>
+
+<pre class="sh_ruby"><code>response.body         # dades complertes
+response.status       # codi d'estat HTTP
+response.content_type # mime-type de la resposta
+response.charset      # codificaci&#xF3; de car&#xE0;cters
+response.headers      # Hash amb les cap&#xE7;aleres</code></pre>
+
+<p>Per exemple si volgu&#xE8;ssim modificar alguna cap&#xE7;alera de la resposta HTTP:</p>
+
+<pre class="sh_ruby"><code>response.headers["Content-Type"] = "application/pdf"</code></pre>
+</div>
+</div></div>
 
 </body>
 </html>
